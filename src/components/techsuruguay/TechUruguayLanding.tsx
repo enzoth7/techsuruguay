@@ -9,6 +9,7 @@ import {
   formatMoney,
   formatMoneyShort,
   normalizeCompanies,
+  mergeCompanies,
   sortCompanies,
   TECHSURUGUAY_COMPANIES,
   TECHSURUGUAY_STORAGE_KEY,
@@ -300,7 +301,7 @@ export default function TechUruguayLanding() {
     try {
       const stored = window.localStorage.getItem(TECHSURUGUAY_STORAGE_KEY);
       if (stored) {
-        setCompanies(normalizeCompanies(JSON.parse(stored)));
+        setCompanies(mergeCompanies(cloneCompanies(TECHSURUGUAY_COMPANIES), normalizeCompanies(JSON.parse(stored))));
       }
     } catch {
       setCompanies(cloneCompanies(TECHSURUGUAY_COMPANIES));

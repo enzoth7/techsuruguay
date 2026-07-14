@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react";
 import {
   cloneCompanies,
+  createBlankCompany,
   formatBucketLabel,
   formatFounded,
   formatInitials,
@@ -11,6 +12,7 @@ import {
   normalizeCompanies,
   parseFounderList,
   parseLineList,
+  mergeCompanies,
   serializeFounderList,
   sortCompanies,
   TECHSURUGUAY_ADMIN_PASSWORD,
@@ -29,13 +31,26 @@ function loadDraft(): TechUruguayCompany[] {
   try {
     const stored = window.localStorage.getItem(TECHSURUGUAY_STORAGE_KEY);
     if (stored) {
-      return normalizeCompanies(JSON.parse(stored));
+      return mergeCompanies(cloneCompanies(TECHSURUGUAY_COMPANIES), normalizeCompanies(JSON.parse(stored)));
     }
   } catch {
     // Keep source data.
   }
 
   return cloneCompanies(TECHSURUGUAY_COMPANIES);
+}
+
+function getUniqueCompanyName(companies: TechUruguayCompany[], baseName = "Nueva empresa"): string {
+  if (!companies.some((company) => company.name === baseName)) {
+    return baseName;
+  }
+
+  let suffix = 2;
+  while (companies.some((company) => company.name === `${baseName} ${suffix}`)) {
+    suffix += 1;
+  }
+
+  return `${baseName} ${suffix}`;
 }
 
 function exportJson(companies: TechUruguayCompany[]) {
@@ -185,6 +200,18 @@ export default function TechUruguayAdmin() {
     setNotice("Restaurado al estado original del Excel.");
   }
 
+  function handleAddCompany() {
+    const newCompany = createBlankCompany({
+      name: getUniqueCompanyName(companies),
+    });
+    const nextCompanies = [...companies, newCompany];
+    setCompanies(nextCompanies);
+    saveDraft(nextCompanies);
+    setSelectedName(newCompany.name);
+    setQuery("");
+    setNotice("Empresa agregada. Completá los campos para publicarla.");
+  }
+
   if (!authenticated) {
     return (
       <div className="min-h-screen px-4 py-10 text-stone-100 sm:px-6 lg:px-8">
@@ -213,7 +240,7 @@ export default function TechUruguayAdmin() {
                   value={username}
                   onChange={(event) => setUsername(event.target.value)}
                   className="w-full rounded-2xl border border-white/10 bg-stone-950/60 px-4 py-3 text-stone-100 outline-none transition placeholder:text-stone-600 focus:border-amber-200/50"
-                  placeholder="admin"
+                  placeholder="user"
                 />
               </label>
               <label className="block">
@@ -225,7 +252,7 @@ export default function TechUruguayAdmin() {
                   value={password}
                   onChange={(event) => setPassword(event.target.value)}
                   className="w-full rounded-2xl border border-white/10 bg-stone-950/60 px-4 py-3 text-stone-100 outline-none transition placeholder:text-stone-600 focus:border-amber-200/50"
-                  placeholder="techsuruguay"
+                  placeholder="password"
                 />
               </label>
             </div>
@@ -364,6 +391,13 @@ export default function TechUruguayAdmin() {
                   </div>
 
                   <div className="flex flex-wrap gap-2">
+                    <button
+                      type="button"
+                      onClick={handleAddCompany}
+                      className="rounded-full bg-emerald-200 px-4 py-2 text-sm font-semibold text-stone-950 transition hover:bg-emerald-100"
+                    >
+                      Agregar empresa
+                    </button>
                     <button
                       type="button"
                       onClick={() => exportJson(companies)}

@@ -48,7 +48,7 @@ export const TECHSURUGUAY_REVENUE_BUCKETS: RevenueBucket[] = [
   { id: "10m-15m", label: "10 millones a 15 millones", shortLabel: "10M - 15M" },
   { id: "15m-plus", label: "15 millones para arriba", shortLabel: "15M+" },
   { id: "1b-plus", label: "Mil millones para arriba", shortLabel: "1B+" },
-  { id: "sin-dato", label: "Sin dato", shortLabel: "Sin dato" },
+  { id: "sin-dato", label: "SIN DATOS", shortLabel: "SIN DATOS" },
 ];
 
 export const TECHSURUGUAY_COMPANIES = rawCompanies as TechUruguayCompany[];
@@ -59,6 +59,41 @@ export function cloneCompanies(companies: TechUruguayCompany[]): TechUruguayComp
     services: Array.isArray(company.services) ? [...company.services] : [],
     founders: Array.isArray(company.founders) ? company.founders.map((founder) => ({ ...founder })) : [],
   }));
+}
+
+export function createBlankCompany(overrides: Partial<TechUruguayCompany> = {}): TechUruguayCompany {
+  return {
+    name: String(overrides.name ?? "").trim(),
+    sector: String(overrides.sector ?? "").trim(),
+    founded:
+      typeof overrides.founded === "number" && Number.isFinite(overrides.founded)
+        ? Math.round(overrides.founded)
+        : null,
+    website: String(overrides.website ?? "").trim(),
+    services: Array.isArray(overrides.services) ? overrides.services.map((service) => String(service).trim()).filter(Boolean) : [],
+    description: String(overrides.description ?? "").trim(),
+    valuation:
+      typeof overrides.valuation === "number" && Number.isFinite(overrides.valuation) && overrides.valuation > 0
+        ? overrides.valuation
+        : null,
+    founders: Array.isArray(overrides.founders)
+      ? overrides.founders
+          .map((founder) => ({
+            name: String(founder?.name ?? "").trim(),
+            role: String(founder?.role ?? "").trim(),
+          }))
+          .filter((founder) => founder.name || founder.role)
+      : [],
+    logoUrl: String(overrides.logoUrl ?? "").trim() || undefined,
+  };
+}
+
+export function mergeCompanies(baseCompanies: TechUruguayCompany[], draftCompanies: TechUruguayCompany[]): TechUruguayCompany[] {
+  const draftByName = new Map(draftCompanies.map((company) => [company.name, company] as const));
+  const merged = baseCompanies.map((baseCompany) => draftByName.get(baseCompany.name) ?? baseCompany);
+  const extras = draftCompanies.filter((company) => !baseCompanies.some((baseCompany) => baseCompany.name === company.name));
+
+  return cloneCompanies([...merged, ...extras]);
 }
 
 export function normalizeCompanies(input: unknown): TechUruguayCompany[] {
