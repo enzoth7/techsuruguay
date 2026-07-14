@@ -1351,36 +1351,5 @@
       }
     ],
     "logoUrl": "/logos/divsub.jpg"
-  },
-    {
-    "name": "Tiendamia",
-    "sector": "E-commerce",
-    "founded": 2014,
-    "website": "https://tiendamia.com.uy/",
-     "services": [
-    "Marketplace de compras internacionales",
-    "Importación de productos desde EE.UU. y China",
-    "Gestión integral de envíos internacionales",
-    "Cálculo automático de impuestos y costos",
-    "Consolidación y logística de pedidos",
-    "Compras sin necesidad de casilla en el exterior",
-    "Seguimiento de envíos en tiempo real",
-    "Atención al cliente para compras internacionales",
-    "Soluciones de cross-border e-commerce",
-    "Plataforma de comercio electrónico internacional"
-  ],
-  "description": "Marketplace de comercio electrónico transfronterizo (cross-border e-commerce) que permite a usuarios de Latinoamérica comprar productos de tiendas internacionales como Amazon, Walmart, eBay y miles de comercios de Estados Unidos y China. La plataforma gestiona todo el proceso de compra, importación, logística, aduanas y entrega, ofreciendo una experiencia simple y transparente para acceder a millones de productos del exterior.",
-    "valuation": 80000000,
-    "founders": [
-      {
-        "name": "Mario Colla",
-        "role": "CEO"
-      },
-      {
-        "name": "Juan Pablo Pereira",
-        "role": "COO"
-      }
-    ],
-    "logoUrl": "/logos/tiendamia_infotin_sa_logo.jpg"
   }
 ]
