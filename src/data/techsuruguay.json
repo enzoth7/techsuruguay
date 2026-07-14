@@ -1,0 +1,1351 @@
+[
+    {
+        "name":  "dLocal",
+        "sector":  "Fintech",
+        "founded":  2016,
+        "website":  "https://www.dlocal.com/es/",
+        "services":  [
+                         "Procesamiento de pagos internacionales",
+                         "Pay-ins (cobros locales)",
+                         "Pay-outs (pagos a usuarios/proveedores)",
+                         "Integración vía API",
+                         "Métodos de pago locales en mercados emergentes"
+                     ],
+        "description":  "Empresa fintech uruguaya que ofrece una plataforma de pagos internacionales que conecta empresas globales con mercados emergentes, facilitando cobros y pagos en múltiples monedas y métodos locales.",
+        "valuation":  9500000000,
+        "founders":  [
+                         {
+                             "name":  "Sebastian Kanovich",
+                             "role":  "CEO"
+                         },
+                         {
+                             "name":  "Jacobo Singer",
+                             "role":  "COO"
+                         },
+                         {
+                             "name":  "Alberto Almeida",
+                             "role":  "CTO"
+                         },
+                         {
+                             "name":  "Andrés Bzurovski",
+                             "role":  "Co-Founder"
+                         },
+                         {
+                             "name":  "Sergio Fogel",
+                             "role":  "Co-Founder"
+                         }
+                     ],
+        "logoUrl":  "/logos/dlocal_logo.jpg"
+    },
+    {
+        "name":  "Prex",
+        "sector":  "Fintech",
+        "founded":  2013,
+        "website":  "https://www.prexcard.com/",
+        "services":  [
+                         "Billetera digital",
+                         "Tarjeta prepaga internacional",
+                         "Pagos y transferencias",
+                         "Cambio de divisas",
+                         "Servicios financieros digitales"
+                     ],
+        "description":  "Fintech que ofrece una app con tarjeta prepaga internacional para pagos, transferencias y manejo de dinero en LATAM.",
+        "valuation":  500000000,
+        "founders":  [
+                         {
+                             "name":  "Alfredo Bruce",
+                             "role":  "CEO"
+                         },
+                         {
+                             "name":  "Rodney Bruce",
+                             "role":  "Co-Founder"
+                         }
+                     ],
+        "logoUrl":  "/logos/prex.png"
+    },
+    {
+        "name":  "PedidosYa",
+        "sector":  "E-commerce",
+        "founded":  2007,
+        "website":  "https://www.pedidosya.com.uy/",
+        "services":  [
+                         "Plataforma de delivery (comida, supermercados, farmacias)",
+                         "Marketplace de comercios",
+                         "Logística (última milla)"
+                     ],
+        "description":  "Plataforma líder de delivery en Latinoamérica que conecta usuarios con restaurantes y comercios mediante una app.",
+        "valuation":  328000000,
+        "founders":  [
+                         {
+                             "name":  "Ariel Burschtin",
+                             "role":  "Co-Founder"
+                         },
+                         {
+                             "name":  "Álvaro García",
+                             "role":  "Co-Founder"
+                         },
+                         {
+                             "name":  "Rubén Sosenke",
+                             "role":  "Co-Founder"
+                         }
+                     ],
+        "logoUrl":  "/logos/pedidosya.jpg"
+    },
+    {
+        "name":  "Bankingly",
+        "sector":  "Fintech",
+        "founded":  2015,
+        "website":  "https://www.bankingly.com/es/",
+        "services":  [
+                         "Banca digital (web y mobile banking)",
+                         "Onboarding digital (KYC/AML)",
+                         "Chatbots / banca conversacional",
+                         "Originación de préstamos",
+                         "Prevención de fraude",
+                         "Plataforma omnicanal para instituciones financieras"
+                     ],
+        "description":  "Plataforma SaaS que permite a bancos, cooperativas y fintechs ofrecer servicios de banca digital (web, mobile y conversacional), facilitando su transformación digital y mejorando la inclusión financiera.",
+        "valuation":  23000000,
+        "founders":  [
+                         {
+                             "name":  "Martin Naor",
+                             "role":  "CEO"
+                         }
+                     ],
+        "logoUrl":  "/logos/Bankingly.jpg"
+    },
+    {
+        "name":  "nocnoc",
+        "sector":  "E-commerce",
+        "founded":  2018,
+        "website":  "https://nocnocstore.com/",
+        "services":  [
+                         "Plataforma para vender en marketplaces internacionales",
+                         "Gestión de e-commerce cross-border",
+                         "Integración con marketplaces (Amazon, Mercado Libre, etc.)",
+                         "Logística, pagos y operaciones internacionales"
+                     ],
+        "description":  "Plataforma que permite a marcas vender globalmente en marketplaces gestionando logística, pagos y operaciones desde un solo lugar.",
+        "valuation":  22000000,
+        "founders":  [
+                         {
+                             "name":  "Ilan Bajarlia",
+                             "role":  "CEO"
+                         },
+                         {
+                             "name":  "Diego Szilagyi",
+                             "role":  "CCO"
+                         },
+                         {
+                             "name":  "Joaquín Colella",
+                             "role":  "CTO"
+                         }
+                     ],
+        "logoUrl":  "/logos/nocnocstore_logo.jpg"
+    },
+    {
+        "name":  "Prometeo",
+        "sector":  "Fintech",
+        "founded":  2015,
+        "website":  "https://prometeoapi.com/es",
+        "services":  [
+                         "APIs bancarias (open banking)",
+                         "Conexión con instituciones financieras",
+                         "Agregación de datos financieros",
+                         "Automatización de procesos financieros"
+                     ],
+        "description":  "Infraestructura fintech que permite a empresas conectarse a bancos mediante APIs para acceder a datos y automatizar procesos financieros.",
+        "valuation":  20000000,
+        "founders":  [
+                         {
+                             "name":  "Rodrigo Tumaian",
+                             "role":  "CEO"
+                         },
+                         {
+                             "name":  "Co-Founder",
+                             "role":  "Co-Founder"
+                         },
+                         {
+                             "name":  "Eduardo Veiga",
+                             "role":  "CTO"
+                         }
+                     ],
+        "logoUrl":  "/logos/prometeo.jpg"
+    },
+    {
+        "name":  "Zapia",
+        "sector":  "AI",
+        "founded":  2023,
+        "website":  "https://zapia.com/?lang=es",
+        "services":  [
+                         "Asistente personal con IA",
+                         "Automatización de tareas (WhatsApp / chat)",
+                         "Búsquedas, recordatorios, gestión diaria",
+                         "Integración con servicios digitales"
+                     ],
+        "description":  "Asistente personal impulsado por IA que permite automatizar tareas y resolver consultas a través de chat, enfocado en simplicidad y uso cotidiano.",
+        "valuation":  19300000,
+        "founders":  [
+                         {
+                             "name":  "Juan Pablo Pereira",
+                             "role":  "CEO"
+                         },
+                         {
+                             "name":  "Martín Alcalá Rubí",
+                             "role":  "Co-Founder"
+                         },
+                         {
+                             "name":  "Nicolas Loeff",
+                             "role":  "CTO"
+                         },
+                         {
+                             "name":  "Juan Olloniego",
+                             "role":  "Co-Founder"
+                         },
+                         {
+                             "name":  "Pablo Rodriguez-Bocca",
+                             "role":  "Co-Founder"
+                         }
+                     ],
+        "logoUrl":  "/logos/zapia.jpg"
+    },
+    {
+        "name":  "Strike",
+        "sector":  "SaaS",
+        "founded":  2020,
+        "website":  "https://strike.sh/es",
+        "services":  [
+                         "Ciberseguridad continua",
+                         "Detección de vulnerabilidades",
+                         "Simulación de ataques (pentesting automatizado)",
+                         "Monitoreo de seguridad con IA"
+                     ],
+        "description":  "Plataforma SaaS que utiliza inteligencia artificial para realizar ciberseguridad continua mediante pruebas automatizadas y detección de vulnerabilidades.",
+        "valuation":  19000000,
+        "founders":  [
+                         {
+                             "name":  "Santiago Rosemblatt",
+                             "role":  "CEO"
+                         },
+                         {
+                             "name":  "Facundo López",
+                             "role":  "Co-Founder"
+                         }
+                     ],
+        "logoUrl":  "/logos/strike_sh_logo.jpg"
+    },
+    {
+        "name":  "Vopero",
+        "sector":  "E-commerce",
+        "founded":  2020,
+        "website":  "https://www.vopero.com/",
+        "services":  [
+                         "Compra y venta de ropa usada (second hand)",
+                         "Curaduría y reacondicionamiento de prendas",
+                         "Logística (retiro, limpieza, almacenamiento, envío)",
+                         "Marketplace de moda circular"
+                     ],
+        "description":  "Marketplace de moda circular que permite vender y comprar ropa usada en excelente estado, gestionando todo el proceso logístico y de calidad.",
+        "valuation":  14000000,
+        "founders":  [
+                         {
+                             "name":  "Alejandro Esperanza",
+                             "role":  "CEO"
+                         },
+                         {
+                             "name":  "Maggie Ferber",
+                             "role":  "CPO"
+                         },
+                         {
+                             "name":  "Ignacio Cattivelli",
+                             "role":  "CTO"
+                         }
+                     ],
+        "logoUrl":  "/logos/vopero.png"
+    },
+    {
+        "name":  "Infinia",
+        "sector":  "Fintech",
+        "founded":  2023,
+        "website":  "https://infinia.xyz/es/",
+        "services":  [
+                         "Infraestructura de pagos en tiempo real",
+                         "Pagos cuenta a cuenta (Account-to-Account)",
+                         "API unificada para pagos en Latinoamérica",
+                         "Transferencias bancarias instantáneas",
+                         "Integración con sistemas financieros",
+                         "Orquestación de pagos internacionales",
+                         "Stablecoins y activos digitales",
+                         "Tesorería y gestión de liquidez",
+                         "Cumplimiento regulatorio (KYC/KYB)",
+                         "Soluciones fintech para empresas",
+                         "Pagos transfronterizos",
+                         "Embedded Finance e infraestructura financiera"
+                     ],
+        "description":  "Fintech uruguaya especializada en infraestructura de pagos que permite a empresas realizar y recibir pagos en tiempo real mediante una única API. Su plataforma conecta la infraestructura bancaria tradicional con redes de activos digitales y stablecoins, simplificando pagos, conciliación y operaciones financieras transfronterizas en Latinoamérica con un enfoque en cumplimiento regulatorio y escalabilidad empresarial.",
+        "valuation":  13500000,
+        "founders":  [
+                         {
+                             "name":  "Ianai Urwicz",
+                             "role":  "CEO"
+                         },
+                         {
+                             "name":  "Alejandro Rettig",
+                             "role":  "CTO"
+                         }
+                     ],
+        "logoUrl":  "/logos/infinia_web_logo.jpg"
+    },
+    {
+        "name":  "Akua",
+        "sector":  "Fintech",
+        "founded":  2024,
+        "website":  "https://akua.la/",
+        "services":  [
+                         "Infraestructura financiera embebida (Embedded Finance)",
+                         "APIs de pagos y banking-as-a-service",
+                         "Emisión y procesamiento de tarjetas",
+                         "Wallets y cuentas digitales",
+                         "Orquestación de pagos",
+                         "Integración fintech para empresas",
+                         "Transferencias y payouts regionales",
+                         "Compliance y prevención de fraude",
+                         "Infraestructura de cobros y movimientos de dinero",
+                         "Soluciones fintech para Latinoamérica",
+                         "Integraciones bancarias y financieras",
+                         "Escalabilidad para productos financieros digitales"
+                     ],
+        "description":  "Fintech de infraestructura financiera enfocada en Latinoamérica que desarrolla APIs y herramientas para que empresas integren pagos, cuentas digitales, emisión de tarjetas y servicios financieros embebidos de forma rápida y escalable. Su enfoque está orientado a modernizar la infraestructura bancaria regional mediante tecnología API-first, compliance automatizado y soluciones fintech modulares para compañías de alto crecimiento.",
+        "valuation":  13000000,
+        "founders":  [
+                         {
+                             "name":  "Carlos Marín",
+                             "role":  "CEO"
+                         },
+                         {
+                             "name":  "Juan José Behrend",
+                             "role":  "CTO"
+                         },
+                         {
+                             "name":  "Rodrigo Rodrigues",
+                             "role":  "COO"
+                         }
+                     ],
+        "logoUrl":  "/logos/akua_la_logo.jpg"
+    },
+    {
+        "name":  "Scanntech",
+        "sector":  "RetailTech",
+        "founded":  1992,
+        "website":  "https://www.scanntech.com/",
+        "services":  [
+                         "Recolección y análisis de datos de consumo",
+                         "Información en tiempo real de ventas (retail)",
+                         "Estudios de mercado",
+                         "Inteligencia comercial para marcas y supermercados",
+                         "Monitoreo de precios y comportamiento del consumidor"
+                     ],
+        "description":  "Empresa que provee inteligencia de mercado basada en datos de ventas reales de supermercados, ayudando a marcas y retailers a tomar decisiones comerciales.",
+        "valuation":  10000000,
+        "founders":  [
+                         {
+                             "name":  "Raúl Polakof",
+                             "role":  "CEO"
+                         }
+                     ],
+        "logoUrl":  "/logos/scanntechuruguay_logo.jpg"
+    },
+    {
+        "name":  "Bunker DB",
+        "sector":  "Martech",
+        "founded":  2015,
+        "website":  "https://bunkerdb.com/",
+        "services":  [
+                         "Centralización de datos de marketing",
+                         "Análisis de datos",
+                         "Dashboards e insights",
+                         "Uso de IA para toma de decisiones"
+                     ],
+        "description":  "Plataforma martech que centraliza y analiza datos de múltiples fuentes para optimizar la toma de decisiones en marketing.",
+        "valuation":  6500000,
+        "founders":  [
+                         {
+                             "name":  "Avedis Boudakian",
+                             "role":  "CEO"
+                         }
+                     ],
+        "logoUrl":  "/logos/bunkerdb_logo.jpg"
+    },
+    {
+        "name":  "Datanomik",
+        "sector":  "Fintech",
+        "founded":  2022,
+        "website":  "https://www.datanomik.com/es",
+        "services":  [
+                         "APIs de open banking",
+                         "Agregación de cuentas bancarias",
+                         "Gestión de tesorería (cash management)",
+                         "Visualización y análisis financiero",
+                         "Automatización de procesos financieros"
+                     ],
+        "description":  "Plataforma fintech que permite a empresas conectar múltiples cuentas bancarias mediante APIs para centralizar, analizar y gestionar su flujo de caja en tiempo real.",
+        "valuation":  6000000,
+        "founders":  [
+                         {
+                             "name":  "Gonzalo Strauss",
+                             "role":  "CEO"
+                         },
+                         {
+                             "name":  "Sergio Fogel",
+                             "role":  "Co-Founder"
+                         }
+                     ],
+        "logoUrl":  "/logos/datanomik.webp"
+    },
+    {
+        "name":  "ANTARKA",
+        "sector":  "Biotech",
+        "founded":  2023,
+        "website":  "https://www.antarka.bio/",
+        "services":  [
+                         "Desarrollo de enzimas reparadoras de ADN",
+                         "Soluciones contra daño por radiación UV",
+                         "Aplicaciones en cuidado de la piel"
+                     ],
+        "description":  "Empresa biotecnológica que desarrolla enzimas capaces de reparar daños en el ADN de la piel causados por radiación UV.",
+        "valuation":  3500000,
+        "founders":  [
+                         {
+                             "name":  "Stefano Valdesolo",
+                             "role":  "CEO"
+                         },
+                         {
+                             "name":  "Betania Martínez Mazzei",
+                             "role":  "Co-Founder"
+                         },
+                         {
+                             "name":  "Juan José Marizcurrena",
+                             "role":  "CSO"
+                         },
+                         {
+                             "name":  "Célica Cagide",
+                             "role":  "COO"
+                         }
+                     ],
+        "logoUrl":  "/logos/antarka_logo.jpg"
+    },
+    {
+        "name":  "Horizon",
+        "sector":  "AI",
+        "founded":  2024,
+        "website":  "https://usehorizon.ai/",
+        "services":  [
+                         "Entrevistas automatizadas a empleados con IA",
+                         "Mapeo de procesos internos",
+                         "Identificación de ineficiencias",
+                         "Generación de insights y prioridades",
+                         "Creación de planes de mejora con ROI"
+                     ],
+        "description":  "Plataforma de IA que analiza organizaciones mediante entrevistas automatizadas a empleados para detectar ineficiencias y generar mejoras operativas basadas en datos.",
+        "valuation":  3500000,
+        "founders":  [
+                         {
+                             "name":  "Nicolas Scopesi",
+                             "role":  "CEO"
+                         },
+                         {
+                             "name":  "Miguel Langone",
+                             "role":  "CTO"
+                         },
+                         {
+                             "name":  "Nicolás López",
+                             "role":  "CPO"
+                         },
+                         {
+                             "name":  "Manuel Stapff Perez del Castillo",
+                             "role":  "Co-Founder"
+                         }
+                     ],
+        "logoUrl":  "/logos/horizonaiprocess_logo.jpg"
+    },
+    {
+        "name":  "Data4Sales",
+        "sector":  "Martech",
+        "founded":  2021,
+        "website":  "https://www.data4sales.com/",
+        "services":  [
+                         "Customer Data Platform (CDP)",
+                         "Centralización de datos de clientes",
+                         "Segmentación y análisis de audiencias",
+                         "Automatización de marketing",
+                         "Campañas multicanal (WhatsApp, email, etc.)",
+                         "IA para predicción y personalización"
+                     ],
+        "description":  "Plataforma SaaS de marketing que centraliza datos de clientes y utiliza IA para segmentar, predecir comportamientos y ejecutar campañas personalizadas",
+        "valuation":  3000000,
+        "founders":  [
+                         {
+                             "name":  "Joaquin Sosa",
+                             "role":  "CEO"
+                         },
+                         {
+                             "name":  "Alexandre Chaves",
+                             "role":  "Co-Founder"
+                         }
+                     ]
+    },
+    {
+        "name":  "Tuna",
+        "sector":  "Fintech",
+        "founded":  2020,
+        "website":  "https://tuna.uy/",
+        "services":  [
+                         "Orquestación de pagos (payment orchestration)",
+                         "Integración con múltiples proveedores de pago (PSPs)",
+                         "Integración con herramientas antifraude",
+                         "Enrutamiento inteligente de pagos",
+                         "Plataforma open source",
+                         "APIs para e-commerce"
+                     ],
+        "description":  "Plataforma open source que permite a empresas, especialmente e-commerce, integrar y gestionar múltiples proveedores de pago y soluciones antifraude desde un solo lugar, optimizando la aprobación de transacciones y reduciendo fricción en el proceso de pago.",
+        "valuation":  3000000,
+        "founders":  [
+                         {
+                             "name":  "Alexander Tabor",
+                             "role":  "CEO"
+                         },
+                         {
+                             "name":  "Paul Ascher",
+                             "role":  "Co-Founder"
+                         },
+                         {
+                             "name":  "Juan Pascual",
+                             "role":  "Co-Founder"
+                         }
+                     ],
+        "logoUrl":  "/logos/tunapayments_logo.jpg"
+    },
+    {
+        "name":  "Promtior",
+        "sector":  "AI",
+        "founded":  2023,
+        "website":  "https://www.promtior.ai/",
+        "services":  [
+                         "Desarrollo de soluciones de IA generativa a medida",
+                         "Automatización de procesos (workflows)",
+                         "Implementación de agentes de IA y copilots",
+                         "Consultoría en adopción de IA",
+                         "Entrenamiento de equipos (executive + workforce)",
+                         "Desarrollo de productos con IA (chatbots, NLP, analytics)",
+                         "AI “as a service” (equipos y talento especializado)"
+                     ],
+        "description":  "Empresa que ayuda a otras compañías a adoptar inteligencia artificial generativa mediante consultoría, desarrollo e implementación de soluciones a medida, transformando procesos y decisiones para hacerlas más eficientes y “biónicas”.",
+        "valuation":  2000000,
+        "founders":  [
+                         {
+                             "name":  "Emiliano Chinelli",
+                             "role":  "CEO"
+                         },
+                         {
+                             "name":  "Joaquín Ávalos",
+                             "role":  "CBO"
+                         },
+                         {
+                             "name":  "Ignacio Acuña",
+                             "role":  "CTO"
+                         }
+                     ],
+        "logoUrl":  "/logos/promtior_ai_logo.jpg"
+    },
+    {
+        "name":  "Arkimedes",
+        "sector":  "Fintech",
+        "founded":  2025,
+        "website":  "https://www.arkimedes.com/",
+        "services":  [
+                         "Automatización de workflows de inversión",
+                         "Due diligence con IA",
+                         "Análisis y scoring de oportunidades",
+                         "Soporte para fondos de private equity",
+                         "Automatización de investment committees",
+                         "Valuación y análisis financiero",
+                         "Inteligencia de mercado y tendencias",
+                         "Strategic planning post-adquisición",
+                         "AI agents para procesos financieros",
+                         "Optimización operativa para fondos de inversión"
+                     ],
+        "description":  "Startup uruguaya de inteligencia artificial enfocada en automatizar procesos del ciclo de inversión para fondos de private equity y firmas financieras globales. Desarrolla herramientas de IA que aceleran tareas como due diligence, análisis financiero y evaluación de oportunidades, reduciendo procesos que antes llevaban semanas a pocas horas. Tiene operaciones en EE.UU., Reino Unido y Brasil, con sede en Nueva York y desarrollo tecnológico en Uruguay.",
+        "valuation":  2000000,
+        "founders":  [
+                         {
+                             "name":  "Rodrigo Capdevielle",
+                             "role":  "Co-Founder"
+                         },
+                         {
+                             "name":  "Maximiliano Casal",
+                             "role":  "Co-Founder"
+                         }
+                     ],
+        "logoUrl":  "/logos/arkimedesai_logo.jpg"
+    },
+    {
+        "name":  "Meitre",
+        "sector":  "SaaS",
+        "founded":  2016,
+        "website":  "https://meitre.com/",
+        "services":  [
+                         "Gestión de reservas para restaurantes",
+                         "Optimización de demanda",
+                         "Pricing dinámico",
+                         "Gestión de mesas y rotación",
+                         "Análisis de datos (demanda pasada y futura)",
+                         "Eliminación de no-shows (depósitos, tarjetas)"
+                     ],
+        "description":  "Plataforma SaaS para restaurantes que optimiza reservas, precios y ocupación mediante análisis de datos y predicción de demanda, aumentando ingresos y eficiencia operativa.",
+        "valuation":  1600000,
+        "founders":  [
+                         {
+                             "name":  "Luis Caviglia",
+                             "role":  "Co-Founder"
+                         },
+                         {
+                             "name":  "Juan Ignacio Caviglia",
+                             "role":  "Co-Founder"
+                         }
+                     ],
+        "logoUrl":  "/logos/meitre.png"
+    },
+    {
+        "name":  "Paganza",
+        "sector":  "Fintech",
+        "founded":  2012,
+        "website":  "https://www.paganza.com/",
+        "services":  [
+                         "Pago de facturas y servicios",
+                         "Billetera digital",
+                         "Recordatorios de pagos",
+                         "Centralización de cuentas y gastos",
+                         "Pagos automáticos"
+                     ],
+        "description":  "Aplicación fintech que permite a usuarios gestionar y pagar sus facturas y servicios desde un solo lugar de forma digital, simple y automatizada.",
+        "valuation":  1500000,
+        "founders":  [
+                         {
+                             "name":  "Leonardo Vernazza",
+                             "role":  "Co-Founder"
+                         },
+                         {
+                             "name":  "Marcelo Lanfranconi",
+                             "role":  "Co-Founder"
+                         }
+                     ],
+        "logoUrl":  "/logos/paganza.jpg"
+    },
+    {
+        "name":  "OrderEAT",
+        "sector":  "FoodTech",
+        "founded":  2022,
+        "website":  "https://www.ordereat.com/",
+        "services":  [
+                         "Digitalización de comedores escolares",
+                         "App para gestión de pedidos",
+                         "Control de alimentación por padres",
+                         "Pagos y administración"
+                     ],
+        "description":  "Plataforma que digitaliza cafeterías escolares y permite a padres gestionar la alimentación de sus hijos.",
+        "valuation":  800000,
+        "founders":  [
+                         {
+                             "name":  "Matías Craviotto",
+                             "role":  "CEO"
+                         },
+                         {
+                             "name":  "Luis Pedro Carrero Mauttoni",
+                             "role":  "CCO"
+                         },
+                         {
+                             "name":  "Juan Manuel Rodríguez Otormin",
+                             "role":  "CTO"
+                         }
+                     ],
+        "logoUrl":  "/logos/ordereat.jpg"
+    },
+    {
+        "name":  "Mozart",
+        "sector":  "SalesTech",
+        "founded":  2024,
+        "website":  "https://mozarth.com/es",
+        "services":  [
+                         "Agentes de voz con IA",
+                         "Automatización de llamadas (ventas, cobranza, retención)",
+                         "Análisis de conversaciones",
+                         "Gestión de pagos y seguimiento",
+                         "Integración tipo call center"
+                     ],
+        "description":  "Plataforma de inteligencia artificial que automatiza llamadas mediante agentes de voz capaces de conversar, negociar y gestionar procesos comerciales sin intervención humana.",
+        "valuation":  800000,
+        "founders":  [
+                         {
+                             "name":  "Christian Valdomir",
+                             "role":  "CEO"
+                         },
+                         {
+                             "name":  "José Ignacio Verde Gaudiano",
+                             "role":  "COO"
+                         },
+                         {
+                             "name":  "Diego Sanchez",
+                             "role":  "CTO"
+                         }
+                     ],
+        "logoUrl":  "/logos/mozart.webp"
+    },
+    {
+        "name":  "PayFlex",
+        "sector":  "Fintech",
+        "founded":  2024,
+        "website":  "https://payflexapp.com/uy",
+        "services":  [
+                         "Sueldo bajo demanda (Earned Wage Access)",
+                         "Acceso instantáneo a salario generado",
+                         "Gestión de beneficios corporativos",
+                         "Agente de IA vía WhatsApp e iMessage",
+                         "Descuentos y beneficios en comercios",
+                         "Cobertura en salud, psicología y nutrición",
+                         "Educación financiera para empleados",
+                         "Plataforma de bienestar financiero",
+                         "Integración con empresas y RRHH"
+                     ],
+        "description":  "Plataforma fintech de bienestar financiero y sueldo bajo demanda que permite a empleados acceder al salario ya trabajado antes de la fecha de cobro. Integra beneficios corporativos, descuentos, salud y educación financiera mediante app móvil y agentes de IA en WhatsApp e iMessage, ayudando a empresas a reducir rotación y mejorar el engagement laboral",
+        "valuation":  800000,
+        "founders":  [
+                         {
+                             "name":  "Fausto Friedrich",
+                             "role":  "CEO"
+                         },
+                         {
+                             "name":  "Matías Bombi",
+                             "role":  "CTO"
+                         }
+                     ],
+        "logoUrl":  "/logos/payflex-cie.png"
+    },
+    {
+        "name":  "TripWip",
+        "sector":  "Mobility Tech",
+        "founded":  2022,
+        "website":  "https://tripwip.app/",
+        "services":  [
+                         "Plataforma de alquiler de autos entre particulares",
+                         "Intermediación P2P",
+                         "Gestión digital de reservas y pagos"
+                     ],
+        "description":  "Marketplace que conecta propietarios de autos con usuarios para alquiler entre particulares (tipo Airbnb pero de autos).",
+        "valuation":  4900000,
+        "founders":  [
+                         {
+                             "name":  "Juan Manuel Pancic",
+                             "role":  "CEO"
+                         },
+                         {
+                             "name":  "Juan Andres Vico",
+                             "role":  "CTO"
+                         }
+                     ],
+        "logoUrl":  "/logos/logo-tripwip.png"
+    },
+    {
+        "name":  "Viatik",
+        "sector":  "Mobility Tech",
+        "founded":  2022,
+        "website":  "https://www.viatik.com/uy",
+        "services":  [
+                         "Conexión de personas para compartir viajes (carpooling)",
+                         "División de gastos de viaje",
+                         "Venta de pasajes de ómnibus desde la app",
+                         "Plataforma digital (app móvil)"
+                     ],
+        "description":  "Viatik es una plataforma digital que conecta personas para compartir viajes entre ciudades, permitiendo dividir costos de transporte y reduciendo el impacto ambiental mediante el uso más eficiente de vehículos. Además, integra la compra de pasajes de ómnibus dentro de la misma aplicación.",
+        "valuation":  500000,
+        "founders":  [
+                         {
+                             "name":  "Renzo Costanzo",
+                             "role":  "CEO"
+                         },
+                         {
+                             "name":  "Gonzalo Aszyn",
+                             "role":  "CTO"
+                         },
+                         {
+                             "name":  "German Mazzarino",
+                             "role":  "COO"
+                         }
+                     ],
+        "logoUrl":  "/logos/viatik-logo-cie.jpeg"
+    },
+    {
+        "name":  "Pooshlo",
+        "sector":  "Martech",
+        "founded":  2025,
+        "website":  "https://pooshlo.com/es/engagement-is-the-new-influence/",
+        "services":  [
+                         "Plataforma de engagement marketing con IA",
+                         "Matching inteligente entre marcas e influencers",
+                         "Asignación de microtareas (likes, comentarios, shares, reposts)",
+                         "Gestión automatizada de campañas e interacciones",
+                         "Seguimiento de performance y métricas en tiempo real",
+                         "Sistema de pagos y monetización para creadores",
+                         "Base de datos verificada de influencers",
+                         "Plataforma SaaS para marcas y agencias"
+                     ],
+        "description":  "Plataforma de marketing digital basada en inteligencia artificial que conecta marcas y agencias con influencers verificados para generar engagement real a escala. Pooshlo automatiza el matching de creadores, la asignación de microtareas e interacciones en redes sociales, permitiendo aumentar el alcance y la interacción de campañas sin necesidad de crear nuevo contenido. Además, ofrece métricas centralizadas, automatización de pagos y monetización para creadores digitales.",
+        "valuation":  500000,
+        "founders":  [
+                         {
+                             "name":  "Andy Israel",
+                             "role":  "CEO"
+                         },
+                         {
+                             "name":  "Douglas Rodríguez",
+                             "role":  "CTO"
+                         },
+                         {
+                             "name":  "Santiago Burgues",
+                             "role":  "CPO"
+                         },
+                         {
+                             "name":  "Belén Díaz",
+                             "role":  "CCO"
+                         },
+                         {
+                             "name":  "Javier González",
+                             "role":  "COO"
+                         }
+                     ],
+        "logoUrl":  "/logos/pooshlo.png"
+    },
+    {
+        "name":  "MiFinanzas",
+        "sector":  "Fintech",
+        "founded":  2017,
+        "website":  "https://www.mifinanzas.com/",
+        "services":  [
+                         "Financiamiento empresarial",
+                         "Adelanto de cheques y facturas",
+                         "Préstamos con garantía",
+                         "Pago a proveedores",
+                         "Gestión digital de liquidez"
+                     ],
+        "description":  "Fintech que ofrece soluciones de financiamiento digital para empresas, facilitando acceso a liquidez de forma ágil.",
+        "valuation":  500000,
+        "founders":  [
+                         {
+                             "name":  "Milton Rodríguez",
+                             "role":  "CEO"
+                         },
+                         {
+                             "name":  "Gonzalo Mesorio",
+                             "role":  "Founder"
+                         },
+                         {
+                             "name":  "Mónica Mesorio",
+                             "role":  "Founder"
+                         }
+                     ],
+        "logoUrl":  "/logos/mifinanzasuy_logo.jpg"
+    },
+    {
+        "name":  "Ofiliaria",
+        "sector":  "SaaS",
+        "founded":  2023,
+        "website":  "https://ofiliaria.com.uy/",
+        "services":  [
+                         "Gestión de alquileres",
+                         "Automatización de procesos inmobiliarios",
+                         "Administración de contratos y pagos"
+                     ],
+        "description":  "Plataforma que automatiza la gestión de alquileres inmobiliarios para propietarios e inmobiliarias.",
+        "valuation":  500000,
+        "founders":  [
+                         {
+                             "name":  "Emanuel Gutiérrez",
+                             "role":  "CEO"
+                         }
+                     ],
+        "logoUrl":  "/logos/logo-ofiliaria.jpeg"
+    },
+    {
+        "name":  "Skyblue analytics",
+        "sector":  "Fintech",
+        "founded":  2021,
+        "website":  "https://skyblueanalytics.com/",
+        "services":  [
+                         "Plataforma de inversión",
+                         "Análisis de datos financieros",
+                         "Acceso a mercado estadounidense",
+                         "Herramientas para inversores retail"
+                     ],
+        "description":  "Plataforma fintech que permite a inversores minoristas acceder al mercado estadounidense utilizando análisis de datos para tomar decisiones de inversión.",
+        "valuation":  350000,
+        "founders":  [
+                         {
+                             "name":  "Sebastián Musso",
+                             "role":  "CEO"
+                         }
+                     ],
+        "logoUrl":  "/logos/skyblueanalytics.webp"
+    },
+    {
+        "name":  "Spicytool",
+        "sector":  "AI",
+        "founded":  2025,
+        "website":  "https://spicytool.net/",
+        "services":  [
+                         "CRM para inmobiliarias y desarrolladoras",
+                         "Integración con WhatsApp Business y API",
+                         "Automatización de ventas y seguimiento de leads",
+                         "Agentes de IA para atención comercial",
+                         "Creación de páginas web con IA",
+                         "Gestión y optimización de Google Ads y Meta Ads",
+                         "Email marketing automatizado",
+                         "Embudos de venta y automatizaciones (workflows)",
+                         "Gestión de propiedades y clientes",
+                         "Analítica comercial y monitoreo de conversiones",
+                         "Marketing digital para real estate",
+                         "Revenue OS para equipos comerciales inmobiliarios"
+                     ],
+        "description":  "Plataforma SaaS especializada en el sector inmobiliario que centraliza CRM, WhatsApp, automatización, inteligencia artificial, marketing digital y gestión comercial en un único sistema. Su enfoque como Revenue OS permite a inmobiliarias y desarrolladoras captar, calificar y convertir leads mediante IA, automatizar procesos comerciales y optimizar campañas publicitarias para aumentar las ventas y escalar la operación.",
+        "valuation":  220000,
+        "founders":  [
+                         {
+                             "name":  "Alejo Dogliani",
+                             "role":  "CEO"
+                         },
+                         {
+                             "name":  "Nicolás Eliceche",
+                             "role":  "COO"
+                         },
+                         {
+                             "name":  "Hernán Racciatti Gimeno",
+                             "role":  "Co-Founder"
+                         }
+                     ],
+        "logoUrl":  "/logos/spicytool_logo.jpg"
+    },
+    {
+        "name":  "Espot",
+        "sector":  "",
+        "founded":  2023,
+        "website":  "https://weareespot.com/productos",
+        "services":  [
+                         "Marketplace de locaciones para producciones",
+                         "Alquiler de espacios para fotografía y video",
+                         "Locaciones para campañas publicitarias",
+                         "Espacios para influencers y creadores de contenido",
+                         "Locaciones para producciones audiovisuales",
+                         "Gestión de reservas online",
+                         "Publicación y monetización de espacios",
+                         "Búsqueda de locaciones por características",
+                         "Soluciones para marcas y agencias creativas",
+                         "Plataforma para anfitriones de espacios"
+                     ],
+        "description":  "Plataforma uruguaya que conecta creadores de contenido, productoras, agencias y marcas con espacios únicos para realizar producciones audiovisuales, sesiones fotográficas y campañas publicitarias. Funciona como un marketplace donde propietarios pueden publicar y monetizar sus locaciones, mientras los usuarios encuentran y reservan espacios de forma rápida para sus proyectos creativos. Actualmente opera en Uruguay y Argentina, con planes de expansión regional.",
+        "valuation":  100000,
+        "founders":  [
+                         {
+                             "name":  "Diego Centurión",
+                             "role":  "Co-Founder"
+                         },
+                         {
+                             "name":  "Mateo López Bravo",
+                             "role":  "Co-Founder"
+                         },
+                         {
+                             "name":  "Leonardo Fernandez Chaves",
+                             "role":  "Co-Founder"
+                         }
+                     ],
+        "logoUrl":  "/logos/somosespot_logo.jpg"
+    },
+    {
+        "name":  "Roma AI",
+        "sector":  "AI",
+        "founded":  2025,
+        "website":  "https://www.teamroma.ai/",
+        "services":  [
+                         "Automatización de procesos con IA",
+                         "Optimización operativa",
+                         "Integraciones empresariales",
+                         "Agentes/flows automatizados"
+                     ],
+        "description":  "Plataforma de inteligencia artificial que automatiza procesos empresariales para mejorar eficiencia y resultados.",
+        "valuation":  100000,
+        "founders":  [
+                         {
+                             "name":  "Richard Barbera",
+                             "role":  "CEO"
+                         },
+                         {
+                             "name":  "Benjamin De Oto",
+                             "role":  "CCO"
+                         }
+                     ],
+        "logoUrl":  "/logos/Roma-AI.png"
+    },
+    {
+        "name":  "cleanup",
+        "sector":  "SaaS",
+        "founded":  2024,
+        "website":  "https://cleanupsolutions.lat/",
+        "services":  [
+                         "Software de gestión de limpieza",
+                         "Control de tareas y personal",
+                         "Seguimiento de operaciones",
+                         "Optimización de procesos en establecimientos"
+                     ],
+        "description":  "Plataforma SaaS que permite gestionar y optimizar servicios de limpieza en establecimientos mediante digitalización de procesos y control operativo.",
+        "valuation":  null,
+        "founders":  [
+                         {
+                             "name":  "Joaquin Ramos Morosini",
+                             "role":  "CEO"
+                         },
+                         {
+                             "name":  "Nestor Ramos",
+                             "role":  "COO"
+                         },
+                         {
+                             "name":  "Agustín Ramos Morosini",
+                             "role":  "CGO"
+                         }
+                     ],
+        "logoUrl":  "/logos/cleanupweb_logo.jpg"
+    },
+    {
+        "name":  "ArreglaTodo",
+        "sector":  "Marketplace",
+        "founded":  2023,
+        "website":  "https://www.arreglatodo.uy/",
+        "services":  [
+                         "Plataforma de servicios de mantenimiento",
+                         "Conexión entre clientes y prestadores",
+                         "Gestión de trabajos domésticos"
+                     ],
+        "description":  "Marketplace que conecta usuarios con proveedores de servicios de mantenimiento para el hogar.",
+        "valuation":  null,
+        "founders":  [
+                         {
+                             "name":  "Máximo Fischer",
+                             "role":  "Founder"
+                         },
+                         {
+                             "name":  "Lorenzo Pequeño",
+                             "role":  "Founder"
+                         }
+                     ],
+        "logoUrl":  "/logos/arregla todo.png"
+    },
+    {
+        "name":  "Meet PIA",
+        "sector":  "AI",
+        "founded":  2025,
+        "website":  "https://meetpia.ai/es",
+        "services":  [
+                         "Entrevistas laborales automatizadas con IA",
+                         "Entrevistas con avatares o voz",
+                         "Evaluación de candidatos (skills, comportamiento, fit)",
+                         "Análisis automático de entrevistas",
+                         "Ranking y scoring de candidatos",
+                         "Insights y dashboards de reclutamiento",
+                         "Investigación cualitativa con IA (encuestas/entrevistas)"
+                     ],
+        "description":  "Plataforma de inteligencia artificial que automatiza procesos de reclutamiento mediante entrevistas dinámicas (voz o avatar), evaluando candidatos de forma objetiva y generando insights para mejorar la toma de decisiones en selección de personal.",
+        "valuation":  null,
+        "founders":  [
+                         {
+                             "name":  "Martin Liguori",
+                             "role":  "CEO"
+                         },
+                         {
+                             "name":  "Adrian Decaux",
+                             "role":  "CTO"
+                         }
+                     ],
+        "logoUrl":  "/logos/meet_pia_logo.jpg"
+    },
+    {
+        "name":  "Flipzen",
+        "sector":  "AI",
+        "founded":  2022,
+        "website":  "https://www.flipzen.com/es/",
+        "services":  [
+                         "Agentes autónomos de IA para compliance",
+                         "Automatización de flujos de trabajo documentales",
+                         "Monitoreo de riesgos y cumplimiento",
+                         "Clasificación de archivos y extracción de datos de contratos",
+                         "Notificaciones y dashboards para control y colaboración"
+                     ],
+        "description":  "Plataforma que revoluciona el compliance mediante agentes autónomos de IA, capaces de automatizar y optimizar flujos de trabajo pesados en documentos, adaptándose a las necesidades de cada organización, garantizando eficiencia, precisión y supervisión constante.",
+        "valuation":  null,
+        "founders":  [
+                         {
+                             "name":  "Maia Brenner",
+                             "role":  "CEO"
+                         }
+                     ],
+        "logoUrl":  "/logos/flipzen_com_logo.jpg"
+    },
+    {
+        "name":  "accesofácil",
+        "sector":  "SaaS",
+        "founded":  2012,
+        "website":  "https://accesofacil.com/home/",
+        "services":  [
+                         "Gestión integral de eventos (presenciales, online e híbridos)",
+                         "Venta de entradas (ticketing)",
+                         "Acreditación y control de acceso (QR, NFC)",
+                         "Envío de invitaciones y email marketing",
+                         "Networking entre asistentes",
+                         "Reportes y analytics en tiempo real",
+                         "Impresión de credenciales y diplomas",
+                         "Plataforma de autogestión de eventos"
+                     ],
+        "description":  "Plataforma tecnológica para la gestión de eventos que centraliza invitaciones, acreditación, control de acceso y datos de participantes, optimizando la organización y mejorando la experiencia del usuario.",
+        "valuation":  null,
+        "founders":  [
+                         {
+                             "name":  "Álvaro Pérez",
+                             "role":  "CEO"
+                         },
+                         {
+                             "name":  "Juan Pablo Conde",
+                             "role":  "Co-Founder"
+                         }
+                     ]
+    },
+    {
+        "name":  "Routist",
+        "sector":  "Mobility Tech",
+        "founded":  2025,
+        "website":  "https://www.routist.com/",
+        "services":  [
+                         "Marketplace digital de cargas y transporte",
+                         "Gestión de flotas y operaciones logísticas",
+                         "Cotizaciones automáticas para transporte de carga",
+                         "Seguimiento GPS y trazabilidad en tiempo real",
+                         "Optimización de rutas y reducción de kilómetros vacíos",
+                         "Automatización logística con agentes de IA",
+                         "Coordinación de viajes y transportistas 24/7",
+                         "Confirmaciones automáticas por voz y llamadas IA",
+                         "Gestión documental y firma digital integrada",
+                         "Plataforma para dadores de carga y transportistas"
+                     ],
+        "description":  "Plataforma logística basada en inteligencia artificial que conecta empresas, operadores logísticos y transportistas en una sola red digital. Routist permite gestionar cargas, flotas y operaciones de transporte mediante automatización, seguimiento en tiempo real y agentes de IA que coordinan viajes, solicitan cotizaciones y resuelven incidencias de forma autónoma. Además, optimiza rutas, reduce tiempos operativos y centraliza toda la trazabilidad logística desde una única plataforma.",
+        "valuation":  null,
+        "founders":  [
+                         {
+                             "name":  "Rodrigo Soca",
+                             "role":  "Co-Founder"
+                         },
+                         {
+                             "name":  "Lucciano Begino",
+                             "role":  "Co-Founder"
+                         }
+                     ],
+        "logoUrl":  "/logos/routist.png"
+    },
+    {
+        "name":  "Haussa",
+        "sector":  "Holding",
+        "founded":  2026,
+        "website":  "https://www.haussa.com/",
+        "services":  [
+                         "Agentes de IA para banca y empresas",
+                         "Automatización conversacional",
+                         "Customer care y soporte omnicanal",
+                         "Marketing y ventas con IA",
+                         "Consultoría Salesforce",
+                         "Implementación y gestión CRM",
+                         "Diseño de productos digitales",
+                         "Web design y desarrollo",
+                         "Consultoría Zendesk",
+                         "Soporte, licencias y capacitación"
+                     ],
+        "description":  "Holding tecnológico especializado en inteligencia artificial, CRM y diseño digital que integra soluciones de automatización conversacional, customer experience y desarrollo de productos digitales. Trabaja con empresas mediante servicios de consultoría, implementación y soporte en plataformas como Salesforce y Zendesk, combinando tecnología, diseño y experiencia personalizada.",
+        "valuation":  null,
+        "founders":  [
+                         {
+                             "name":  "Andrés Ugarte",
+                             "role":  "Co-Founder"
+                         },
+                         {
+                             "name":  "Gabriel Rilo",
+                             "role":  "Co-Founder"
+                         },
+                         {
+                             "name":  "Guzmán Barquín Valiente",
+                             "role":  "Co-Founder"
+                         },
+                         {
+                             "name":  "Marcel Dibot",
+                             "role":  "Co-Founder"
+                         },
+                         {
+                             "name":  "Rodrigo Capdevielle",
+                             "role":  "Co-Founder"
+                         },
+                         {
+                             "name":  "Sebastián Galli",
+                             "role":  "Co-Founder"
+                         }
+                     ],
+        "logoUrl":  "/logos/haussa_logo.jpg"
+    },
+    {
+        "name":  "Simple Studio®",
+        "sector":  "",
+        "founded":  2022,
+        "website":  "https://www.simplestudio.is/",
+        "services":  [
+                         "Desarrollo de productos digitales",
+                         "Diseño UX/UI",
+                         "Branding y estrategia visual",
+                         "Desarrollo web y mobile",
+                         "Diseño de interfaces SaaS",
+                         "MVPs para startups",
+                         "Product discovery y research",
+                         "Sistemas de diseño (Design Systems)",
+                         "Desarrollo frontend",
+                         "Consultoría de producto digital"
+                     ],
+        "description":  "Estudio digital especializado en diseño y desarrollo de productos tecnológicos para startups y empresas. Combina branding, UX/UI y desarrollo web para crear plataformas digitales, SaaS y experiencias enfocadas en escalabilidad, usabilidad y crecimiento de negocio. Su enfoque está orientado a construir productos modernos con fuerte identidad visual y experiencia de usuario.",
+        "valuation":  null,
+        "founders":  [
+                         {
+                             "name":  "Guzmán Barquín Valiente",
+                             "role":  "CEO"
+                         }
+                     ]
+    },
+    {
+        "name":  "hikko",
+        "sector":  "",
+        "founded":  2022,
+        "website":  "https://www.hikko.com/",
+        "services":  [
+                         "Consultoría e implementación Salesforce",
+                         "Automatización de customer experience (CX)",
+                         "Integraciones y migración de sistemas",
+                         "Managed services y soporte continuo",
+                         "Staff augmentation tecnológico",
+                         "Diseño y optimización de procesos",
+                         "Desarrollo de productos digitales",
+                         "Automatización con IA",
+                         "Training y adopción de plataformas",
+                         "Estrategia de transformación digital"
+                     ],
+        "description":  "Consultora tecnológica uruguaya especializada en Salesforce, automatización y customer experience que combina tecnología estratégica con diseño de productos digitales para escalar empresas en Latinoamérica y EE.UU. Trabaja con implementación, consultoría, soporte y automatización empresarial, integrando IA, CRM y operaciones digitales para compañías medianas y grandes. Actualmente forma parte del holding tecnológico Haussa.",
+        "valuation":  null,
+        "founders":  [
+                         {
+                             "name":  "Gabriel Rilo",
+                             "role":  "CEO"
+                         },
+                         {
+                             "name":  "Rodrigo Capdevielle",
+                             "role":  "Co-Founder"
+                         }
+                     ],
+        "logoUrl":  "/logos/hikko_is_logo.jpg"
+    },
+    {
+        "name":  "Zenital",
+        "sector":  "",
+        "founded":  2022,
+        "website":  "https://zenital.co/es",
+        "services":  [
+                         "Implementación y consultoría Zendesk",
+                         "Customer Experience (CX)",
+                         "Automatización de atención al cliente",
+                         "Integración de sistemas y CRMs",
+                         "Soporte y optimización de plataformas",
+                         "Capacitación y adopción tecnológica",
+                         "Consultoría en procesos digitales",
+                         "Soluciones de ventas y servicio omnicanal",
+                         "Desarrollo de integraciones personalizadas",
+                         "Licenciamiento Zendesk"
+                     ],
+        "description":  "Consultora tecnológica uruguaya especializada en Customer Experience y soluciones Zendesk para empresas de Latinoamérica. Ayuda a organizaciones a optimizar atención al cliente, ventas y procesos digitales mediante automatización, integraciones y consultoría tecnológica. Nació como spin-off de Hikko y actualmente forma parte del holding tecnológico Haussa, con operaciones en múltiples mercados de América Latina.",
+        "valuation":  null,
+        "founders":  [
+                         {
+                             "name":  "Marcel Dibot",
+                             "role":  "Co-Founder"
+                         },
+                         {
+                             "name":  "Andrés Ugarte",
+                             "role":  "CEO"
+                         }
+                     ]
+    },
+    {
+        "name":  "Delto",
+        "sector":  "",
+        "founded":  2024,
+        "website":  "https://www.delto.com/",
+        "services":  [
+                         "Agentes de IA conversacional para banca",
+                         "Automatización de customer operations",
+                         "Atención al cliente con IA",
+                         "Canales conversacionales para bancos",
+                         "Integraciones con core bancario",
+                         "Automatización de cobranzas",
+                         "Marketing y ventas conversacionales",
+                         "Analytics y monitoreo de interacciones",
+                         "Framework low-code para IA bancaria",
+                         "Implementación de IA generativa segura",
+                         "Soluciones omnicanal (WhatsApp, chat, voz)",
+                         "Consultoría en transformación digital bancaria"
+                     ],
+        "description":  "Startup uruguaya especializada en inteligencia artificial conversacional para banca y grandes instituciones financieras. Desarrolla agentes de IA generativa enfocados en customer operations, automatización y experiencia del cliente, con fuerte foco en compliance, seguridad y escalabilidad. Opera en múltiples países de Latinoamérica y forma parte del holding tecnológico Haussa.",
+        "valuation":  null,
+        "founders":  [
+                         {
+                             "name":  "Sebastián Galli",
+                             "role":  "CEO"
+                         }
+                     ],
+        "logoUrl":  "/logos/deltocom_logo.jpg"
+    },
+    {
+        "name":  "DivSub",
+        "sector":  "",
+        "founded":  2024,
+        "website":  "https://divsub.com/",
+        "services":  [
+                         "Compartir suscripciones digitales",
+                         "División automática de costos",
+                         "Búsqueda de co-suscriptores",
+                         "Gestión de grupos de suscripción",
+                         "Plataforma segura para compartir cuentas",
+                         "Ahorro en servicios de streaming",
+                         "Compartir suscripciones de música",
+                         "Compartir suscripciones de videojuegos",
+                         "Compartir suscripciones de software",
+                         "Gestión de pagos entre usuarios"
+                     ],
+        "description":  "Plataforma que permite a los usuarios compartir suscripciones digitales y dividir sus costos de forma segura y sencilla. Conecta propietarios de cuentas con personas interesadas en unirse a planes compartidos de servicios como streaming, música, videojuegos y software, facilitando la administración de pagos y reduciendo el costo mensual de las suscripciones mediante una experiencia simple y confiable.",
+        "valuation":  null,
+        "founders":  [
+                         {
+                             "name":  "Pedro Azambuja",
+                             "role":  "Co-Founder"
+                         },
+                         {
+                             "name":  "Juan Etcheverry",
+                             "role":  "Co-Founder"
+                         }
+                     ],
+        "logoUrl":  "/logos/divsub.jpg"
+    }
+]
