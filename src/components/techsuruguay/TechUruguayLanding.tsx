@@ -317,7 +317,7 @@ export default function TechUruguayLanding() {
   }, [ranked]);
 
   return (
-    <div className="min-h-screen text-slate-50">git
+    <div className="min-h-screen text-slate-50">
       <main className="mx-auto max-w-7xl px-4 pb-20 pt-10 sm:px-6 lg:px-8 lg:pt-14">
         <section className="text-center">
           <h1 className="font-display text-4xl font-semibold leading-tight text-slate-50 sm:text-5xl lg:text-6xl">
