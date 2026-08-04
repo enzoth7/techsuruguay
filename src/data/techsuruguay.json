@@ -1424,5 +1424,37 @@
       }
     ],
     "logoUrl": "/logos/tecspal_logo.jpg"
+  },      {
+    "name": "hiSofi",
+    "sector": "Fintech",
+    "founded": 2021,
+    "website": "https://www.hisofi.com/",
+  "services": [
+    "Automatización de cobranzas",
+    "Gestión inteligente de cuentas por cobrar",
+    "Recordatorios automáticos de pago",
+    "Agentes de IA para cobranzas",
+    "Comunicación omnicanal con clientes",
+    "Scoring y priorización de deudores",
+    "Integración con ERP y sistemas financieros",
+    "Analítica y monitoreo de cobranzas",
+    "Automatización de procesos financieros",
+    "Soluciones de Order-to-Cash (O2C)",
+    "Recuperación de cartera",
+    "Plataforma SaaS para gestión de cobranzas"
+  ],
+  "description": "Plataforma SaaS especializada en automatizar el proceso de cuentas por cobrar (Accounts Receivable) mediante inteligencia artificial. Permite a empresas optimizar la gestión de cobranzas, automatizar la comunicación con clientes, priorizar deudores, monitorear indicadores financieros e integrarse con sistemas ERP para mejorar el flujo de caja, reducir la morosidad y aumentar la eficiencia operativa.",
+    "valuation": 40000000,
+    "founders": [
+      {
+        "name": "Tatiana Pomar",
+        "role": "CEO"
+      },
+      {
+        "name": "Leonardo Paladino",
+        "role": "CIO"
+      }
+    ],
+    "logoUrl": "/logos/hisofi_logo.jpg"
   }
 ]
