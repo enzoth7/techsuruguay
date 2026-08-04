@@ -1382,5 +1382,47 @@
       }
     ],
     "logoUrl": "/logos/tiendamia_infotin_sa_logo.jpg"
+  },
+      {
+    "name": "TecsPal",
+    "sector": "IT Asset Management",
+    "founded": 2022,
+    "website": "https://www.tecspal.com/",
+  "services": [
+    "Adquisición de hardware corporativo",
+    "Gestión global de activos de TI",
+    "Onboarding de empleados remotos",
+    "Offboarding y recuperación de equipos",
+    "Almacenamiento de dispositivos",
+    "Logística internacional de hardware",
+    "Configuración y despliegue de equipos",
+    "Seguimiento centralizado de activos",
+    "Reasignación y reciclaje de dispositivos",
+    "Plataforma de gestión de hardware",
+    "Procurement tecnológico global",
+    "Entrega de equipos en más de 160 países"
+  ],
+  "description": "Plataforma de gestión global de activos de TI que permite a empresas adquirir, almacenar, configurar, entregar, recuperar y administrar dispositivos tecnológicos para equipos distribuidos en más de 160 países. Centraliza todo el ciclo de vida del hardware mediante una única plataforma, simplificando la logística internacional, el onboarding y offboarding de colaboradores y el control de activos corporativos.",
+    "valuation": 35000000,
+    "founders": [
+      {
+        "name": "Juan Pablo Bordaberry Paullier",
+        "role": "CEO"
+      },
+      {
+        "name": "Santiago Alcuri",
+        "role": "COO"
+      },
+            {
+        "name": "Juan Manuel Cat",
+        "role": "CRO"
+      },
+        
+      {
+        "name": "Matias Garcia",
+        "role": "CTO"
+      }
+    ],
+    "logoUrl": "/logos/tecspal_logo.jpg"
   }
 ]
