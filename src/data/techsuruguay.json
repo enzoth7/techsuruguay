@@ -1424,7 +1424,8 @@
       }
     ],
     "logoUrl": "/logos/tecspal_logo.jpg"
-  },      {
+  },    
+    {
     "name": "hiSofi",
     "sector": "Fintech",
     "founded": 2021,
@@ -1456,5 +1457,46 @@
       }
     ],
     "logoUrl": "/logos/hisofi_logo.jpg"
+  },
+    {
+    "name": "trolabs",
+    "sector": "AI",
+    "founded": 2009,
+    "website": "https://tryolabs.com/",
+  "services": [
+    "Consultoría y estrategia de IA",
+    "Adopción de inteligencia artificial",
+    "Desarrollo de soluciones de Machine Learning",
+    "Desarrollo de IA generativa",
+    "Agentes de IA y copilotos",
+    "Data Science",
+    "Data Engineering",
+    "Video Analytics y Computer Vision",
+    "Optimización de precios",
+    "Product Matching",
+    "Data Migration y Data Lakes",
+    "MLOps y LLMOps",
+    "Automatización de workflows",
+    "Forward Deployed Engineers",
+    "Creación de Centros de Excelencia en IA",
+    "Capacitación y desarrollo de equipos de IA"
+  ],
+  "description": "Empresa uruguaya especializada en inteligencia artificial y datos que trabaja con organizaciones globales para diseñar, desarrollar y escalar soluciones de IA en producción. Ofrece consultoría estratégica, Machine Learning, IA generativa, agentes de IA, ingeniería de datos, MLOps y automatización, acompañando a sus clientes desde la identificación de oportunidades y los pilotos hasta la implementación y escalabilidad de capacidades de IA dentro de la empresa. Fue fundada en Uruguay en 2009 y actualmente opera como una consultora global de IA con más de 100 colaboradores y clientes corporativos internacionales.",
+    "valuation": 10000000,
+    "founders": [
+      {
+        "name": "Martín Alcalá Rubí",
+        "role": "CEO"
+      },
+      {
+        "name": "Raúl Garreta",
+        "role": "CTO"
+      },
+        {
+        "name": "Ernesto Rodriguez Di Paolo",
+        "role": "COO"
+      }
+    ],
+    "logoUrl": "/logos/tryolabs_logo.jpg"
   }
 ]
