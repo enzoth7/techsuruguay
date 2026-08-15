@@ -45,9 +45,9 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: [{ url: "/Logo.png", type: "image/png", sizes: "1254x1254" }],
-    shortcut: "/Logo.png",
-    apple: [{ url: "/Logo.png", type: "image/png", sizes: "1254x1254" }],
+    icon: [{ url: "/LogoTransp.png", type: "image/png", sizes: "1536x1024" }],
+    shortcut: "/LogoTransp.png",
+    apple: [{ url: "/LogoTransp.png", type: "image/png", sizes: "1536x1024" }],
   },
   manifest: "/manifest.webmanifest",
   openGraph: {
@@ -59,9 +59,9 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     images: [
       {
-        url: "/Logo.png",
-        width: 1254,
-        height: 1254,
+        url: "/LogoTransp.png",
+        width: 1536,
+        height: 1024,
         alt: "Logo de Techs Uruguay",
       },
     ],
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: siteConfig.title,
     description: siteConfig.description,
-    images: ["/Logo.png"],
+    images: ["/LogoTransp.png"],
   },
   robots: {
     index: true,

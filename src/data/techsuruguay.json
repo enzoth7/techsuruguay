@@ -1498,5 +1498,42 @@
       }
     ],
     "logoUrl": "/logos/tryolabs_logo.jpg"
+  },
+      {
+    "name": "Atom Labs AI",
+    "sector": "AI",
+    "founded": 2025,
+    "website": "https://www.atomlabsai.com/es",
+  "services": [
+    "Agentes de IA para empresas",
+    "Agentes conversacionales",
+    "Agentes de voz con IA",
+    "IA conectada a bases de datos y documentos",
+    "Agentes Text-to-SQL",
+    "Automatización end-to-end de procesos",
+    "Integraciones entre CRM, ERP, marketing y e-commerce",
+    "Automatización de reporting y dashboards",
+    "Software a medida con inteligencia artificial",
+    "Desarrollo de plataformas internas con IA",
+    "Diseño y arquitectura de soluciones de IA",
+    "Integración de IA con WhatsApp, Telegram, Instagram y web",
+    "Consultoría y estrategia de IA",
+    "Auditoría y optimización de procesos",
+    "Capacitación de equipos en inteligencia artificial",
+    "Monitoreo, soporte y evolución de sistemas de IA"
+  ],
+  "description": "Software factory de inteligencia artificial con sede en Montevideo que diseña, desarrolla y opera sistemas de IA para empresas de Latinoamérica. AtomLabs combina agentes conversacionales y de voz, automatización de procesos, integraciones empresariales y software a medida con IA, trabajando directamente sobre los sistemas y operaciones de cada cliente. Ofrece soluciones listas para desplegar y desarrollos personalizados, desde el discovery y la arquitectura hasta la puesta en producción, monitoreo y evolución continua.",
+    "valuation": null,
+    "founders": [
+      {
+        "name": "Ignacio Miranda",
+        "role": "CTO"
+      },
+      {
+        "name": "Matías Jordá",
+        "role": "Co-Founder"
+      }
+    ],
+    "logoUrl": "/logos/atomlabs_ai_logo.jpg"
   }
 ]

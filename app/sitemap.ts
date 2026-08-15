@@ -9,7 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: homeUrl,
       changeFrequency: "weekly",
       priority: 1,
-      images: [new URL("/Logo.png", siteConfig.url).toString()],
+      images: [new URL("/LogoTransp.png", siteConfig.url).toString()],
       alternates: {
         languages: {
           "es-UY": homeUrl,
