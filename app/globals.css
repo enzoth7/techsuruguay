@@ -19,6 +19,8 @@ html {
 
 body {
   min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: clip;
   background:
     radial-gradient(circle at top left, rgba(125, 211, 252, 0.24), transparent 28%),
     radial-gradient(circle at top right, rgba(127, 29, 29, 0.22), transparent 24%),
@@ -27,6 +29,25 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   text-rendering: optimizeLegibility;
+}
+
+.mobile-safe-area {
+  padding-left: calc(1rem + env(safe-area-inset-left));
+  padding-right: calc(1rem + env(safe-area-inset-right));
+}
+
+@media (min-width: 40rem) {
+  .mobile-safe-area {
+    padding-left: calc(1.5rem + env(safe-area-inset-left));
+    padding-right: calc(1.5rem + env(safe-area-inset-right));
+  }
+}
+
+@media (min-width: 64rem) {
+  .mobile-safe-area {
+    padding-left: calc(2rem + env(safe-area-inset-left));
+    padding-right: calc(2rem + env(safe-area-inset-right));
+  }
 }
 
 ::selection {
