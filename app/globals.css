@@ -22,10 +22,10 @@ body {
   min-height: 100dvh;
   overflow-x: clip;
   background:
-    radial-gradient(circle at top left, rgba(125, 211, 252, 0.24), transparent 28%),
-    radial-gradient(circle at top right, rgba(127, 29, 29, 0.22), transparent 24%),
-    radial-gradient(circle at bottom left, rgba(37, 99, 235, 0.16), transparent 26%),
-    linear-gradient(180deg, #08111f 0%, #0d1a31 45%, #2a0f18 100%);
+    radial-gradient(circle at 15% 0%, rgba(37, 99, 235, 0.32), transparent 30%),
+    radial-gradient(circle at 90% 20%, rgba(14, 165, 233, 0.22), transparent 28%),
+    radial-gradient(circle at 48% 100%, rgba(30, 64, 175, 0.2), transparent 36%),
+    linear-gradient(145deg, #020617 0%, #07152f 48%, #071d42 100%);
   color: var(--foreground);
   font-family: var(--font-sans);
   text-rendering: optimizeLegibility;
@@ -56,6 +56,126 @@ body {
 }
 
 @layer utilities {
+  .ranking-header,
+  .ranking-row {
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 1fr) 2rem;
+    align-items: center;
+    width: 100%;
+  }
+
+  .ranking-header {
+    min-height: 3.25rem;
+    padding: 0 1rem;
+    border-bottom: 1px solid rgb(255 255 255 / 0.1);
+    background: rgb(2 6 23 / 0.48);
+    color: rgb(148 163 184);
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .ranking-header .ranking-type,
+  .ranking-header .ranking-founded,
+  .ranking-header .ranking-money {
+    display: none;
+  }
+
+  .ranking-row {
+    min-height: 4.75rem;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    touch-action: manipulation;
+    transition: background-color 180ms ease, box-shadow 180ms ease;
+  }
+
+  .ranking-row:hover,
+  .ranking-item.is-open .ranking-row {
+    background: linear-gradient(90deg, rgb(34 211 238 / 0.1), transparent 72%);
+  }
+
+  .ranking-row:focus-visible {
+    outline: 3px solid rgb(103 232 249 / 0.8);
+    outline-offset: -3px;
+  }
+
+  .ranking-position {
+    color: rgb(148 163 184);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .ranking-cell {
+    display: none;
+    color: rgb(203 213 225);
+    font-size: 0.875rem;
+  }
+
+  .ranking-money {
+    color: rgb(207 250 254);
+    font-weight: 600;
+  }
+
+  .ranking-chevron {
+    color: rgb(165 243 252);
+    font-size: 1.4rem;
+    font-weight: 300;
+    line-height: 1;
+    text-align: right;
+  }
+
+  .ranking-details {
+    border-top: 1px solid rgb(255 255 255 / 0.1);
+    background: rgb(2 6 23 / 0.42);
+    padding: 1.5rem 1rem;
+  }
+
+  .ranking-detail-label {
+    color: rgb(103 232 249);
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ranking-row {
+      transition: none;
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .ranking-header,
+    .ranking-row {
+      grid-template-columns: 4rem minmax(0, 1.55fr) minmax(8rem, 0.85fr) 6.5rem minmax(8.75rem, 1fr) 2rem;
+    }
+
+    .ranking-header,
+    .ranking-row {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    .ranking-row {
+      min-height: 5.25rem;
+    }
+
+    .ranking-cell {
+      display: block;
+    }
+
+    .ranking-header .ranking-type,
+    .ranking-header .ranking-founded,
+    .ranking-header .ranking-money {
+      display: block;
+    }
+
+    .ranking-details {
+      padding: 1.75rem 1.5rem 2rem 5.5rem;
+    }
+  }
   .input {
     width: 100%;
     border: 1px solid rgb(255 255 255 / 0.1);

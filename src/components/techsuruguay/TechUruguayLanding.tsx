@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable @next/next/no-img-element */
 
 import { useEffect, useMemo, useState } from "react";
 import {
@@ -6,7 +7,6 @@ import {
   formatFounded,
   formatInitials,
   formatMoney,
-  formatMoneyShort,
   sortCompanies,
   TECHSURUGUAY_COMPANIES,
   type TechUruguayCompany,
@@ -17,311 +17,101 @@ import { createSupabaseBrowserClient, isSupabaseConfigured } from "@/src/lib/sup
 type RankedCompany = TechUruguayCompany & { position: number };
 
 function getRankedCompanies(companies: TechUruguayCompany[]): RankedCompany[] {
-  return sortCompanies(companies).map((company, index) => ({
-    ...company,
-    position: index + 1,
-  }));
-}
-
-function sizePreset(position: number) {
-  if (position === 1) {
-    return {
-      card: "lg:min-h-[320px] lg:grid-cols-[220px_minmax(0,1fr)_220px]",
-      rankNumber: "text-4xl lg:text-[120px]",
-      logo: "h-16 w-16 text-xl sm:h-20 sm:w-20 sm:text-2xl",
-      title: "text-xl sm:text-3xl",
-      meta: "text-sm",
-      body: "text-base",
-      sideTitle: "text-2xl sm:text-3xl",
-      compact: false,
-    };
-  }
-
-  if (position <= 5) {
-    if (position <= 3) {
-      return {
-        card: "lg:min-h-[250px] lg:grid-cols-[170px_minmax(0,1fr)_190px]",
-        rankNumber: "text-4xl lg:text-[86px]",
-        logo: "h-16 w-16 text-xl",
-        title: "text-xl sm:text-2xl",
-        meta: "text-sm",
-        body: "text-base",
-        sideTitle: "text-xl sm:text-2xl",
-        compact: false,
-      };
-    }
-
-    return {
-      card: "lg:min-h-[220px] lg:grid-cols-[150px_minmax(0,1fr)_175px]",
-      rankNumber: "text-4xl lg:text-[86px]",
-      logo: "h-16 w-16 text-xl",
-      title: "text-xl sm:text-2xl",
-      meta: "text-sm",
-      body: "text-base",
-      sideTitle: "text-xl sm:text-2xl",
-      compact: false,
-    };
-  }
-
-  if (position <= 10) {
-    return {
-      card: "lg:min-h-[210px] lg:grid-cols-[130px_minmax(0,1fr)_170px]",
-      rankNumber: "text-4xl lg:text-[64px]",
-      logo: "h-14 w-14 text-lg",
-      title: "text-lg sm:text-xl",
-      meta: "text-xs sm:text-sm",
-      body: "text-base",
-      sideTitle: "text-lg sm:text-xl",
-      compact: true,
-    };
-  }
-
-  return {
-    card: "lg:min-h-[180px] lg:grid-cols-[96px_minmax(0,1fr)_160px]",
-    rankNumber: "text-3xl lg:text-[46px]",
-    logo: "h-12 w-12 text-base",
-    title: "text-lg",
-    meta: "text-xs",
-    body: "text-base",
-    sideTitle: "text-lg",
-    compact: true,
-  };
-}
-
-function rankPreset(position: number, valuation: number | null | undefined) {
-  const noData = valuation == null || !Number.isFinite(valuation) || valuation <= 0;
-
-  if (noData) {
-    return {
-      rail: "from-amber-50 via-stone-100 to-amber-100",
-      square: "bg-slate-950 text-stone-800",
-      positionText: "text-stone-800",
-      valuationText: "text-stone-200",
-    };
-  }
-
-  if (position === 1) {
-    return {
-      rail: "from-amber-200 via-yellow-100 to-amber-500",
-      square: "bg-slate-950 text-slate-950",
-      positionText: "text-slate-950",
-      valuationText: "text-sky-100",
-    };
-  }
-
-  if (position === 2) {
-    return {
-      rail: "from-slate-100 via-slate-200 to-slate-400",
-      square: "bg-slate-950 text-slate-950",
-      positionText: "text-slate-950",
-      valuationText: "text-slate-100",
-    };
-  }
-
-  if (position === 3) {
-    return {
-      rail: "from-orange-300 via-orange-200 to-amber-700",
-      square: "bg-slate-950 text-slate-950",
-      positionText: "text-slate-950",
-      valuationText: "text-orange-100",
-    };
-  }
-
-  if (position <= 5) {
-    return {
-      rail: "from-cyan-100 via-sky-100 to-slate-300",
-      square: "bg-slate-950 text-slate-950",
-      positionText: "text-slate-950",
-      valuationText: "text-sky-100",
-    };
-  }
-
-  if (position <= 10) {
-    return {
-      rail: "from-sky-500 via-cyan-300 to-slate-900",
-      square: "bg-slate-950 text-cyan-100",
-      positionText: "text-cyan-100",
-      valuationText: "text-cyan-100",
-    };
-  }
-
-  if (position <= 20) {
-    return {
-      rail: "from-indigo-500 via-sky-500 to-slate-900",
-      square: "bg-slate-950 text-indigo-100",
-      positionText: "text-indigo-100",
-      valuationText: "text-indigo-100",
-    };
-  }
-
-  return {
-    rail: "from-slate-700 via-slate-900 to-black",
-    square: "bg-slate-950 text-slate-100",
-    positionText: "text-slate-100",
-    valuationText: "text-slate-100",
-  };
+  return sortCompanies(companies).map((company, index) => ({ ...company, position: index + 1 }));
 }
 
 function CompanyLogo({ company }: { company: TechUruguayCompany }) {
   if (company.logoUrl) {
-    return (
-      // eslint-disable-next-line @next/next/no-img-element
-      <img
-        src={company.logoUrl}
-        loading="lazy"
-        decoding="async"
-        alt={`Logo de ${company.name}`}
-        className="h-full w-full object-cover"
-      />
-    );
+    return <img src={company.logoUrl} loading="lazy" decoding="async" alt={`Logo de ${company.name}`} className="h-full w-full object-cover" />;
   }
 
-  return <span>{formatInitials(company.name)}</span>;
+  return <span aria-hidden="true">{formatInitials(company.name)}</span>;
 }
 
-function RankedCard({ company }: { company: RankedCompany }) {
-  const preset = sizePreset(company.position);
-  const rank = rankPreset(company.position, company.valuation);
-  const founders = Array.isArray(company.founders) ? company.founders : [];
+function RankingRow({
+  company,
+  expanded,
+  onToggle,
+}: {
+  company: RankedCompany;
+  expanded: boolean;
+  onToggle: () => void;
+}) {
+  const detailsId = `empresa-${company.position}`;
 
   return (
-    <article
-      className={[
-        "grid min-w-0 grid-cols-1 overflow-hidden rounded-[28px] border border-sky-200/10 bg-slate-950/48 shadow-[0_24px_80px_rgba(8,17,31,0.26)] sm:rounded-[32px]",
-        preset.card,
-      ].join(" ")}
-    >
-      <div
-        className={[
-          "flex min-h-16 items-center justify-between bg-gradient-to-br px-4 py-3 sm:px-5 lg:min-h-0 lg:justify-center lg:px-4 lg:py-4",
-          rank.rail,
-        ].join(" ")}
+    <li className={expanded ? "ranking-item is-open" : "ranking-item"}>
+      <button
+        type="button"
+        aria-expanded={expanded}
+        aria-controls={detailsId}
+        onClick={onToggle}
+        className="ranking-row"
       >
-        <span
-          className={[
-            "text-[10px] font-semibold uppercase tracking-[0.24em] lg:hidden",
-            rank.positionText,
-          ].join(" ")}
-          aria-hidden="true"
-        >
-          Puesto en el ranking
-        </span>
-        <span
-          className={["font-black leading-none tracking-tight", rank.positionText, preset.rankNumber].join(" ")}
-        >
-          <span className="sr-only">Puesto </span>
-          {company.position}
-        </span>
-      </div>
-
-      <div className="min-w-0 border-y border-sky-200/10 px-4 py-5 sm:px-5 lg:border-x lg:border-y-0 lg:px-6 lg:py-6">
-        <div className="flex min-w-0 items-start gap-3 sm:gap-4">
-          <div
-            className={[
-              "flex shrink-0 items-center justify-center overflow-hidden rounded-3xl border border-sky-200/12 bg-gradient-to-br from-sky-200 via-sky-100 to-red-950/30 font-semibold text-slate-950",
-              preset.logo,
-            ].join(" ")}
-          >
+        <span className="ranking-position">{String(company.position).padStart(2, "0")}</span>
+        <span className="flex min-w-0 items-center gap-3">
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-md border border-white/10 bg-white/[0.07] text-xs font-bold text-cyan-100">
             <CompanyLogo company={company} />
-          </div>
+          </span>
+          <span className="min-w-0 text-left">
+            <span className="block truncate text-base font-semibold tracking-[-0.02em] text-white sm:text-lg">{company.name}</span>
+            <span className="mt-0.5 block truncate text-xs text-slate-400 md:hidden">{company.sector || "Sin clasificar"}</span>
+          </span>
+        </span>
+        <span className="ranking-cell ranking-type">{company.sector || "Sin clasificar"}</span>
+        <span className="ranking-cell ranking-founded">{formatFounded(company.founded)}</span>
+        <span className="ranking-cell ranking-money">{formatMoney(company.valuation)}</span>
+        <span className="ranking-chevron" aria-hidden="true">{expanded ? "−" : "+"}</span>
+      </button>
 
-          <div className="min-w-0 flex-1">
-            <div className="flex flex-wrap items-center gap-2">
-              {company.website ? (
-                <a
-                  href={company.website}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={[
-                    preset.title,
-                    "inline-flex min-h-11 max-w-full touch-manipulation items-center break-words font-semibold leading-tight text-slate-50 underline decoration-sky-300/40 underline-offset-4 transition hover:text-sky-50 active:opacity-75 focus-visible:rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-300 [overflow-wrap:anywhere]",
-                  ].join(" ")}
-                >
-                  {company.name}
-                </a>
-              ) : (
-                <h3
-                  className={[
-                    preset.title,
-                    "break-words font-semibold leading-tight text-slate-50 [overflow-wrap:anywhere]",
-                  ].join(" ")}
-                >
-                  {company.name}
-                </h3>
-              )}
-            </div>
-
-            <p
-              className={[
-                "mt-1 break-words font-semibold leading-5 text-slate-200 [overflow-wrap:anywhere]",
-                preset.meta,
-              ].join(" ")}
-            >
-              {company.sector || "Sin sector"} · {formatFounded(company.founded)} ·{" "}
-              {formatMoney(company.valuation)}
-            </p>
-
-            <p
-              className={[
-                "mt-3 max-w-4xl break-words leading-6 text-slate-300 sm:mt-4 sm:leading-7 [overflow-wrap:anywhere]",
-                preset.body,
-              ].join(" ")}
-            >
-              {company.description || "Descripción pendiente."}
-            </p>
-          </div>
-        </div>
-
-        <div className={["mt-5 grid gap-3", preset.compact ? "md:grid-cols-1" : "md:grid-cols-2"].join(" ")}>
-          <div className="rounded-2xl border border-sky-200/10 bg-slate-950/45 p-4">
-            <p className="text-[10px] uppercase tracking-[0.28em] text-sky-200/75">Servicios</p>
-            <ul className="mt-3 space-y-2 text-base text-slate-200 sm:text-sm">
-              {company.services.slice(0, preset.compact ? 3 : 5).map((service) => (
-                <li key={service} className="flex gap-3">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-300" />
-                  <span className="break-words [overflow-wrap:anywhere]">{service}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="rounded-2xl border border-red-300/10 bg-slate-950/45 p-4">
-            <p className="text-[10px] uppercase tracking-[0.28em] text-red-200/75">Miembros</p>
-            {founders.length > 0 ? (
-              <ul className="mt-3 space-y-2 text-base text-slate-200 sm:text-sm">
-                {founders.slice(0, preset.compact ? 3 : 5).map((founder) => (
-                  <li key={`${founder.name}-${founder.role}`} className="flex gap-3">
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-rose-300" />
-                    <span className="break-words [overflow-wrap:anywhere]">
-                      <span className="font-medium text-slate-50">{founder.name}</span>
-                      {founder.role ? <span className="text-slate-400"> · {founder.role}</span> : null}
+      {expanded ? (
+        <div id={detailsId} className="ranking-details">
+          <div className="grid gap-7 md:grid-cols-[minmax(0,1.45fr)_minmax(220px,0.85fr)]">
+            <div>
+              <p className="ranking-detail-label">Acerca de</p>
+              <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-300 sm:text-base">
+                {company.description || "Esta empresa todavía no tiene una descripción publicada."}
+              </p>
+              {company.services.length ? (
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {company.services.map((service) => (
+                    <span key={service} className="rounded-full border border-cyan-200/15 bg-cyan-100/[0.06] px-3 py-1 text-xs text-cyan-100">
+                      {service}
                     </span>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="mt-3 text-base text-slate-400 sm:text-sm">Sin miembros cargados.</p>
-            )}
+                  ))}
+                </div>
+              ) : null}
+            </div>
+            <div className="border-t border-white/10 pt-6 md:border-l md:border-t-0 md:pl-7 md:pt-0">
+              <p className="ranking-detail-label">Integrantes</p>
+              {company.founders.length ? (
+                <ul className="mt-3 space-y-3">
+                  {company.founders.map((founder) => (
+                    <li key={`${founder.name}-${founder.role}`}>
+                      <p className="text-sm font-medium text-white">{founder.name}</p>
+                      {founder.role ? <p className="mt-0.5 text-sm text-slate-400">{founder.role}</p> : null}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="mt-3 text-sm text-slate-400">Sin integrantes cargados.</p>
+              )}
+              {company.website ? (
+                <a href={company.website} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-cyan-200 underline decoration-cyan-300/40 underline-offset-4 transition hover:text-white">
+                  Visitar sitio <span aria-hidden="true">↗</span>
+                </a>
+              ) : null}
+            </div>
           </div>
         </div>
-      </div>
-
-      <div className="flex items-center bg-slate-950/72 px-4 py-4 sm:px-5 lg:justify-center lg:border-l lg:py-5">
-        <div className="flex w-full items-center justify-between gap-4 lg:block lg:text-center">
-          <p className={["text-xs uppercase tracking-[0.28em]", rank.valuationText].join(" ")}>Valoración</p>
-          <p className={["font-semibold lg:mt-3", rank.valuationText, preset.sideTitle].join(" ")}>
-            {formatMoneyShort(company.valuation)}
-          </p>
-        </div>
-      </div>
-    </article>
+      ) : null}
+    </li>
   );
 }
 
 export default function TechUruguayLanding() {
-  const [companies, setCompanies] = useState<TechUruguayCompany[]>(() =>
-    cloneCompanies(TECHSURUGUAY_COMPANIES),
-  );
+  const [companies, setCompanies] = useState<TechUruguayCompany[]>(() => cloneCompanies(TECHSURUGUAY_COMPANIES));
+  const [openName, setOpenName] = useState<string | null>(null);
 
   useEffect(() => {
     if (!isSupabaseConfigured()) return;
@@ -331,43 +121,54 @@ export default function TechUruguayLanding() {
         if (onlineCompanies?.length) setCompanies(onlineCompanies);
       })
       .catch(() => {
-        // The published base remains visible if the online service is unavailable.
+        // Keep the bundled ranking available if the public database is temporarily unavailable.
       });
   }, []);
 
   const ranked = useMemo(() => getRankedCompanies(companies), [companies]);
-
-  const stats = useMemo(() => {
-    const totalCompanies = ranked.length;
-    const totalSectors = new Set(ranked.map((company) => company.sector || "Sin sector")).size;
-    return { totalCompanies, totalSectors };
-  }, [ranked]);
+  const sectors = useMemo(() => new Set(ranked.map((company) => company.sector || "Sin clasificar")).size, [ranked]);
 
   return (
-    <div className="min-h-dvh text-slate-50">
-      <main className="mobile-safe-area mx-auto max-w-7xl pb-16 pt-8 sm:px-6 sm:pb-20 sm:pt-10 lg:px-8 lg:pt-14">
-        <section className="text-center">
-          <h1 className="font-display text-4xl font-semibold leading-tight text-slate-50 sm:text-5xl lg:text-6xl">
-            Techs Uruguay
-          </h1>
-          <p className="mx-auto mt-5 max-w-3xl text-base leading-7 text-slate-300 sm:text-lg">
-            Ranking editorial de empresas tech uruguayas ordenadas por valoración.
-          </p>
-
-          <div className="mx-auto mt-7 grid max-w-sm grid-cols-2 gap-2 text-sm sm:mt-8 sm:flex sm:max-w-none sm:flex-wrap sm:justify-center sm:gap-3">
-            <span className="flex min-h-11 items-center justify-center rounded-full border border-sky-200/10 bg-slate-950/40 px-3 py-2 text-center text-slate-200 sm:px-4">
-              {stats.totalCompanies} empresas
-            </span>
-            <span className="flex min-h-11 items-center justify-center rounded-full border border-sky-200/10 bg-slate-950/40 px-3 py-2 text-center text-slate-200 sm:px-4">
-              {stats.totalSectors} sectores
-            </span>
+    <div className="site-shell min-h-dvh text-slate-50">
+      <main className="mobile-safe-area mx-auto max-w-7xl pb-16 pt-8 sm:px-6 sm:pb-20 sm:pt-12 lg:px-8">
+        <section className="relative overflow-hidden rounded-[28px] border border-white/10 bg-slate-950/45 px-5 py-8 shadow-[0_32px_100px_rgba(2,8,23,0.32)] backdrop-blur-sm sm:rounded-[36px] sm:px-9 sm:py-11">
+          <div className="absolute inset-y-0 right-0 w-1/2 bg-[radial-gradient(circle_at_70%_45%,rgba(34,211,238,0.18),transparent_47%)]" />
+          <div className="relative max-w-4xl">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.34em] text-cyan-200/80 sm:text-xs">Ecosistema tecnológico uruguayo</p>
+            <h1 className="mt-4 max-w-3xl text-4xl font-semibold tracking-[-0.055em] text-white sm:text-6xl">El ranking que sigue a las techs de Uruguay.</h1>
+            <p className="mt-5 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">Una lectura rápida y ordenada de las empresas que están construyendo tecnología desde Uruguay.</p>
+            <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 border-t border-white/10 pt-5 text-sm">
+              <p><span className="font-semibold text-white">{ranked.length}</span> <span className="text-slate-400">empresas</span></p>
+              <p><span className="font-semibold text-white">{sectors}</span> <span className="text-slate-400">tipos de empresa</span></p>
+              <p className="text-slate-400">Hacé clic en una fila para ver el detalle.</p>
+            </div>
           </div>
         </section>
 
-        <section className="mt-8 space-y-4 sm:mt-10" aria-label="Ranking de empresas tech de Uruguay">
-          {ranked.map((company) => (
-            <RankedCard key={company.name} company={company} />
-          ))}
+        <section className="mt-8 sm:mt-10" aria-labelledby="ranking-title">
+          <div className="mb-4 flex items-end justify-between gap-5">
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.34em] text-cyan-200/75">Clasificación</p>
+              <h2 id="ranking-title" className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-white sm:text-3xl">Empresas en foco</h2>
+            </div>
+            <p className="hidden text-right text-xs text-slate-400 sm:block">Datos consultados desde la base editorial.</p>
+          </div>
+
+          <div className="overflow-hidden rounded-[24px] border border-white/10 bg-slate-950/55 shadow-[0_24px_80px_rgba(2,8,23,0.22)] sm:rounded-[30px]">
+            <div className="ranking-header" aria-hidden="true">
+              <span>Pos.</span><span>Empresa</span><span className="ranking-type">Tipo</span><span className="ranking-founded">Fundación</span><span className="ranking-money">Valoración</span><span />
+            </div>
+            <ol className="divide-y divide-white/10">
+              {ranked.map((company) => (
+                <RankingRow
+                  key={company.name}
+                  company={company}
+                  expanded={openName === company.name}
+                  onToggle={() => setOpenName((current) => current === company.name ? null : company.name)}
+                />
+              ))}
+            </ol>
+          </div>
         </section>
       </main>
     </div>
