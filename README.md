@@ -9,10 +9,10 @@ Landing editorial y panel privado para empresas tech uruguayas.
 
 ## Admin
 
-- Usuario: `admin`
-- Contraseña: `techsuruguay`
-
-Los cambios del admin se guardan en `localStorage` del navegador y se pueden exportar/importar como JSON.
+- Autenticación por correo y contraseña de Supabase.
+- Los cambios se publican online para todos los visitantes.
+- Permite agregar, editar, eliminar, importar/exportar empresas y subir logos JPG, PNG o WebP de hasta 5 MB.
+- Seguí [la guía de activación](docs/ONLINE_ADMIN_SETUP.md) antes del primer deploy.
 
 ## Datos
 

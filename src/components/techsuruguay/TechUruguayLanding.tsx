@@ -7,13 +7,12 @@ import {
   formatInitials,
   formatMoney,
   formatMoneyShort,
-  normalizeCompanies,
-  mergeCompanies,
   sortCompanies,
   TECHSURUGUAY_COMPANIES,
-  TECHSURUGUAY_STORAGE_KEY,
   type TechUruguayCompany,
 } from "@/src/lib/techsuruguay";
+import { getOnlineCompanies } from "@/src/lib/online-companies";
+import { createSupabaseBrowserClient, isSupabaseConfigured } from "@/src/lib/supabase/client";
 
 type RankedCompany = TechUruguayCompany & { position: number };
 
@@ -163,9 +162,10 @@ function rankPreset(position: number, valuation: number | null | undefined) {
   };
 }
 
-function CompanyLogo({ company, className }: { company: TechUruguayCompany; className: string }) {
+function CompanyLogo({ company }: { company: TechUruguayCompany }) {
   if (company.logoUrl) {
     return (
+      // eslint-disable-next-line @next/next/no-img-element
       <img
         src={company.logoUrl}
         loading="lazy"
@@ -222,7 +222,7 @@ function RankedCard({ company }: { company: RankedCompany }) {
               preset.logo,
             ].join(" ")}
           >
-            <CompanyLogo company={company} className={preset.logo} />
+            <CompanyLogo company={company} />
           </div>
 
           <div className="min-w-0 flex-1">
@@ -324,14 +324,15 @@ export default function TechUruguayLanding() {
   );
 
   useEffect(() => {
-    try {
-      const stored = window.localStorage.getItem(TECHSURUGUAY_STORAGE_KEY);
-      if (stored) {
-        setCompanies(mergeCompanies(cloneCompanies(TECHSURUGUAY_COMPANIES), normalizeCompanies(JSON.parse(stored))));
-      }
-    } catch {
-      setCompanies(cloneCompanies(TECHSURUGUAY_COMPANIES));
-    }
+    if (!isSupabaseConfigured()) return;
+
+    getOnlineCompanies(createSupabaseBrowserClient())
+      .then((onlineCompanies) => {
+        if (onlineCompanies?.length) setCompanies(onlineCompanies);
+      })
+      .catch(() => {
+        // The published base remains visible if the online service is unavailable.
+      });
   }, []);
 
   const ranked = useMemo(() => getRankedCompanies(companies), [companies]);
