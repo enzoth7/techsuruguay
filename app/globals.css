@@ -664,107 +664,11 @@ body {
     font-size: 0.85rem;
   }
 
-  .ranking-context {
-    max-width: 52rem;
-    margin-top: 4rem;
-    border-top: 2px solid rgb(15 23 42 / 0.72);
-    padding-top: 1.5rem;
-  }
-
-  .ranking-context h2,
   .company-profile-section h2 {
     color: rgb(2 6 23);
     font-size: clamp(1.35rem, 2.5vw, 2rem);
     font-weight: 750;
     letter-spacing: -0.035em;
-  }
-
-  .ranking-context p {
-    margin-top: 0.75rem;
-    color: rgb(51 65 85);
-    font-size: 0.98rem;
-    line-height: 1.65;
-  }
-
-  .directory-links {
-    margin-top: 2.5rem;
-    border-top: 1px solid rgb(15 23 42 / 0.22);
-    border-bottom: 1px solid rgb(15 23 42 / 0.22);
-  }
-
-  .directory-links summary {
-    display: flex;
-    min-height: 3.25rem;
-    align-items: center;
-    justify-content: space-between;
-    color: rgb(2 6 23);
-    font-size: 0.75rem;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    list-style: none;
-    text-transform: uppercase;
-    cursor: pointer;
-  }
-
-  .directory-links summary::-webkit-details-marker {
-    display: none;
-  }
-
-  .directory-links summary::after {
-    width: 0.5rem;
-    height: 0.5rem;
-    border-right: 1.5px solid currentColor;
-    border-bottom: 1.5px solid currentColor;
-    content: "";
-    transform: rotate(45deg) translateY(-0.18rem);
-    transition: transform 180ms ease;
-  }
-
-  .directory-links[open] summary::after {
-    transform: rotate(-135deg) translate(-0.12rem, -0.12rem);
-  }
-
-  .directory-links summary:focus-visible,
-  .directory-links a:focus-visible {
-    outline: 2px solid rgb(15 23 42 / 0.82);
-    outline-offset: -2px;
-  }
-
-  .directory-links ul {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
-    gap: 0;
-    margin-bottom: 1rem;
-    border-top: 1px solid rgb(15 23 42 / 0.16);
-  }
-
-  .directory-links li {
-    border-bottom: 1px solid rgb(15 23 42 / 0.14);
-  }
-
-  .directory-links a {
-    display: flex;
-    min-height: 3.25rem;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    padding: 0.6rem 0.75rem;
-    color: rgb(2 6 23);
-    font-size: 0.86rem;
-    font-weight: 700;
-    text-decoration: none;
-  }
-
-  .directory-links a:hover {
-    background: rgb(15 23 42 / 0.06);
-  }
-
-  .directory-links a small {
-    flex: none;
-    color: rgb(71 85 105);
-    font-size: 0.68rem;
-    font-weight: 500;
-    text-align: right;
   }
 
   .company-profile {

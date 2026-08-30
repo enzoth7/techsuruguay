@@ -8,7 +8,6 @@ import {
   formatInitials,
   formatMoney,
   sortCompanies,
-  slugifyCompanyName,
   TECHSURUGUAY_COMPANIES,
   type TechUruguayCompany,
 } from "@/src/lib/techsuruguay";
@@ -149,7 +148,6 @@ function RankingRow({ company, expanded, onToggle }: { company: RankedCompany; e
               {company.website ? (
                 <a href={company.website} target="_blank" rel="noreferrer" className="mt-6 inline-flex min-h-11 items-center text-sm font-semibold text-slate-950 underline decoration-slate-500 underline-offset-4 transition hover:text-red-800">Visitar sitio</a>
               ) : null}
-              <a href={`/empresas/${slugifyCompanyName(company.name)}`} className="mt-3 inline-flex min-h-11 items-center text-sm font-semibold text-slate-950 underline decoration-slate-500 underline-offset-4 transition hover:text-red-800">Ver ficha de la empresa</a>
             </div>
           </div>
         </div>
@@ -393,26 +391,6 @@ export default function TechUruguayLanding({ initialCompanies = TECHSURUGUAY_COM
             )}
           </ol>
         </section>
-
-        <section className="ranking-context" aria-labelledby="ranking-context-title">
-          <h2 id="ranking-context-title">Directorio de startups y empresas tech uruguayas</h2>
-          <p>Techs Uruguay reúne información editorial sobre compañías tecnológicas con actividad en Uruguay. Cada ficha incluye su sector, año de fundación, valoración estimada cuando está disponible, servicios y equipo.</p>
-          <p>La clasificación es una referencia editorial para descubrir el ecosistema tecnológico uruguayo. Usá los filtros del ranking para recorrer empresas de software, fintech, inteligencia artificial, e-commerce y otros sectores.</p>
-        </section>
-
-        <details className="directory-links">
-          <summary>Explorar fichas de empresas</summary>
-          <ul>
-            {ranked.map((company) => (
-              <li key={company.name}>
-                <a href={`/empresas/${slugifyCompanyName(company.name)}`}>
-                  <strong>{company.name}</strong>
-                  <small>{company.sector || "Empresa tecnológica"}</small>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </details>
 
         <footer
           style={{
