@@ -36,10 +36,14 @@ export const metadata: Metadata = {
     "tecnología Uruguay",
     "ecosistema tecnológico uruguayo",
     "ranking empresas uruguayas",
+    "directorio startups Uruguay",
+    "empresas de tecnología Uruguay",
+    "empresas de software Uruguay",
   ],
   alternates: {
     canonical: "/",
     languages: {
+      es: "/",
       "es-UY": "/",
       "x-default": "/",
     },
@@ -99,8 +103,8 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  colorScheme: "dark",
-  themeColor: "#08111f",
+  colorScheme: "light",
+  themeColor: "#f4f3f1",
 };
 
 export default function RootLayout({

@@ -1,13 +1,14 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type CSSProperties, type MouseEvent } from "react";
 import {
   cloneCompanies,
   formatFounded,
   formatInitials,
   formatMoney,
   sortCompanies,
+  slugifyCompanyName,
   TECHSURUGUAY_COMPANIES,
   type TechUruguayCompany,
 } from "@/src/lib/techsuruguay";
@@ -15,9 +16,56 @@ import { getOnlineCompanies } from "@/src/lib/online-companies";
 import { createSupabaseBrowserClient, isSupabaseConfigured } from "@/src/lib/supabase/client";
 
 type RankedCompany = TechUruguayCompany & { position: number };
+type RankingSort = "position" | "founded";
+type SortDirection = "asc" | "desc";
 
 function getRankedCompanies(companies: TechUruguayCompany[]): RankedCompany[] {
   return sortCompanies(companies).map((company, index) => ({ ...company, position: index + 1 }));
+}
+
+function getRankTone(position: number) {
+  if (position === 1) return "rank-gold";
+  if (position === 2) return "rank-silver";
+  if (position === 3) return "rank-bronze";
+  if (position <= 10) return "rank-red";
+  if (position <= 20) return "rank-blue";
+  return "rank-graphite";
+}
+
+function getPodiumStyle(position: number): CSSProperties {
+  const minHeight = position === 1
+    ? "clamp(12rem, 24vw, 18.5rem)"
+    : position === 2
+      ? "clamp(10.5rem, 21vw, 16.5rem)"
+      : "clamp(10rem, 20vw, 15.5rem)";
+  const shared: CSSProperties = {
+    border: "1px solid rgba(15, 23, 42, 0.15)",
+    borderRadius: "1.35rem 1.35rem 0.4rem 0.4rem",
+    boxShadow: "0 22px 55px rgba(15, 23, 42, 0.18)",
+    minHeight,
+  };
+
+  if (position === 1) {
+    return {
+      ...shared,
+      borderTop: "6px solid #684200",
+      background: "linear-gradient(118deg, rgba(255,255,255,0.58), transparent 34%), linear-gradient(145deg, #fff1a8 0%, #e1b73f 56%, #b77705 100%)",
+    };
+  }
+
+  if (position === 2) {
+    return {
+      ...shared,
+      borderTop: "6px solid #475569",
+      background: "linear-gradient(118deg, rgba(255,255,255,0.95), transparent 38%), linear-gradient(145deg, #ffffff 0%, #eceff2 58%, #cbd2d9 100%)",
+    };
+  }
+
+  return {
+    ...shared,
+    borderTop: "6px solid #642a08",
+    background: "linear-gradient(118deg, rgba(255,255,255,0.42), transparent 34%), linear-gradient(145deg, #f6c59c 0%, #c8753d 56%, #934514 100%)",
+  };
 }
 
 function CompanyLogo({ company }: { company: TechUruguayCompany }) {
@@ -25,82 +73,83 @@ function CompanyLogo({ company }: { company: TechUruguayCompany }) {
     return <img src={company.logoUrl} loading="lazy" decoding="async" alt={`Logo de ${company.name}`} className="h-full w-full object-cover" />;
   }
 
-  return <span aria-hidden="true">{formatInitials(company.name)}</span>;
+  return <div aria-hidden="true">{formatInitials(company.name)}</div>;
 }
 
-function RankingRow({
-  company,
-  expanded,
-  onToggle,
-}: {
-  company: RankedCompany;
-  expanded: boolean;
-  onToggle: () => void;
-}) {
+function PodiumCompany({ company, onSelect }: { company: RankedCompany; onSelect: () => void }) {
+  return (
+    <article className={`podium-entry podium-${company.position} ${getRankTone(company.position)}`} style={getPodiumStyle(company.position)}>
+      <button type="button" className="podium-action" onClick={onSelect} aria-label={`Ver a ${company.name} en la posición ${company.position} del ranking`}>
+        <p className="podium-rank">P{company.position}</p>
+        <div className="podium-logo"><CompanyLogo company={company} /></div>
+        <div className="podium-copy">
+          <h3>{company.name}</h3>
+          <p>{company.sector || "Sin clasificar"}</p>
+        </div>
+      </button>
+    </article>
+  );
+}
+
+function RankingRow({ company, expanded, onToggle }: { company: RankedCompany; expanded: boolean; onToggle: () => void }) {
   const detailsId = `empresa-${company.position}`;
+  const rankTone = getRankTone(company.position);
 
   return (
-    <li className={expanded ? "ranking-item is-open" : "ranking-item"}>
-      <button
-        type="button"
-        aria-expanded={expanded}
-        aria-controls={detailsId}
-        onClick={onToggle}
-        className="ranking-row"
-      >
-        <span className="ranking-position">{String(company.position).padStart(2, "0")}</span>
-        <span className="flex min-w-0 items-center gap-3">
-          <span className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-md border border-white/10 bg-white/[0.07] text-xs font-bold text-cyan-100">
-            <CompanyLogo company={company} />
-          </span>
-          <span className="min-w-0 text-left">
-            <span className="block truncate text-base font-semibold tracking-[-0.02em] text-white sm:text-lg">{company.name}</span>
-            <span className="mt-0.5 block truncate text-xs text-slate-400 md:hidden">{company.sector || "Sin clasificar"}</span>
-          </span>
-        </span>
-        <span className="ranking-cell ranking-type">{company.sector || "Sin clasificar"}</span>
-        <span className="ranking-cell ranking-founded">{formatFounded(company.founded)}</span>
-        <span className="ranking-cell ranking-money">{formatMoney(company.valuation)}</span>
-        <span className="ranking-chevron" aria-hidden="true">{expanded ? "−" : "+"}</span>
+    <li id={`ranking-company-${company.position}`} className={`ranking-item ${rankTone}${expanded ? " is-open" : ""}`}>
+      <button type="button" aria-expanded={expanded} aria-controls={detailsId} onClick={onToggle} className="ranking-row">
+        <div className="ranking-position" style={{ paddingInlineStart: "clamp(0rem, calc((48rem - 100vw) * 999), 0.75rem)" }}>{String(company.position).padStart(2, "0")}</div>
+        <div className="ranking-company">
+          <div className="ranking-logo"><CompanyLogo company={company} /></div>
+          <div className="min-w-0 text-left">
+            <div className="ranking-name">{company.name}</div>
+            <div className="ranking-mobile-valuation">{formatMoney(company.valuation)}</div>
+          </div>
+        </div>
+        <div className="ranking-cell ranking-type">{company.sector || "Sin clasificar"}</div>
+        <div className="ranking-cell ranking-founded">{formatFounded(company.founded)}</div>
+        <div className="ranking-cell ranking-money">{formatMoney(company.valuation)}</div>
+        <div className="ranking-chevron" aria-hidden="true">{expanded ? "−" : "+"}</div>
       </button>
 
       {expanded ? (
         <div id={detailsId} className="ranking-details">
+          <dl className="ranking-mobile-facts">
+            <div style={{ padding: 0, border: 0, borderRadius: 0, background: "transparent" }}>
+              <dt>Tipo de empresa</dt>
+              <dd>{company.sector || "Sin clasificar"}</dd>
+            </div>
+            <div style={{ padding: 0, border: 0, borderRadius: 0, background: "transparent" }}>
+              <dt>Año de fundación</dt>
+              <dd>{formatFounded(company.founded)}</dd>
+            </div>
+          </dl>
           <div className="grid gap-7 md:grid-cols-[minmax(0,1.45fr)_minmax(220px,0.85fr)]">
             <div>
               <p className="ranking-detail-label">Acerca de</p>
-              <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-300 sm:text-base">
-                {company.description || "Esta empresa todavía no tiene una descripción publicada."}
-              </p>
+              <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-700 sm:text-base">{company.description || "Esta empresa todavía no tiene una descripción publicada."}</p>
               {company.services.length ? (
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {company.services.map((service) => (
-                    <span key={service} className="rounded-full border border-cyan-200/15 bg-cyan-100/[0.06] px-3 py-1 text-xs text-cyan-100">
-                      {service}
-                    </span>
-                  ))}
-                </div>
+                <ul className="mt-5 grid gap-x-6 gap-y-2 text-sm text-slate-700 sm:grid-cols-2">
+                  {company.services.map((service) => <li key={service}>— {service}</li>)}
+                </ul>
               ) : null}
             </div>
-            <div className="border-t border-white/10 pt-6 md:border-l md:border-t-0 md:pl-7 md:pt-0">
+            <div className="border-t border-slate-900/15 pt-6 md:border-l md:border-t-0 md:pl-7 md:pt-0">
               <p className="ranking-detail-label">Integrantes</p>
               {company.founders.length ? (
                 <ul className="mt-3 space-y-3">
                   {company.founders.map((founder) => (
                     <li key={`${founder.name}-${founder.role}`}>
-                      <p className="text-sm font-medium text-white">{founder.name}</p>
-                      {founder.role ? <p className="mt-0.5 text-sm text-slate-400">{founder.role}</p> : null}
+                      <p className="text-sm font-semibold text-slate-950">{founder.name}</p>
+                      {founder.role ? <p className="mt-0.5 text-sm text-slate-600">{founder.role}</p> : null}
                     </li>
                   ))}
                 </ul>
-              ) : (
-                <p className="mt-3 text-sm text-slate-400">Sin integrantes cargados.</p>
-              )}
+              ) : <p className="mt-3 text-sm text-slate-600">Sin integrantes cargados.</p>}
               {company.website ? (
-                <a href={company.website} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-cyan-200 underline decoration-cyan-300/40 underline-offset-4 transition hover:text-white">
-                  Visitar sitio <span aria-hidden="true">↗</span>
-                </a>
+                <a href={company.website} target="_blank" rel="noreferrer" className="mt-6 inline-flex min-h-11 items-center text-sm font-semibold text-slate-950 underline decoration-slate-500 underline-offset-4 transition hover:text-red-800">Visitar sitio</a>
               ) : null}
+              <a href={`/empresas/${slugifyCompanyName(company.name)}`} className="mt-3 inline-flex min-h-11 items-center text-sm font-semibold text-slate-950 underline decoration-slate-500 underline-offset-4 transition hover:text-red-800">Ver ficha de la empresa</a>
             </div>
           </div>
         </div>
@@ -109,67 +158,287 @@ function RankingRow({
   );
 }
 
-export default function TechUruguayLanding() {
-  const [companies, setCompanies] = useState<TechUruguayCompany[]>(() => cloneCompanies(TECHSURUGUAY_COMPANIES));
+function SectorFilter({
+  sectors,
+  selectedSector,
+  onSelect,
+}: {
+  sectors: string[];
+  selectedSector: string;
+  onSelect: (sector: string) => void;
+}) {
+  const currentLabel = selectedSector === "all" ? "Tipo: todos" : selectedSector;
+
+  const chooseSector = (event: MouseEvent<HTMLButtonElement>, sector: string) => {
+    onSelect(sector);
+    event.currentTarget.closest("details")?.removeAttribute("open");
+  };
+
+  return (
+    <details className="ranking-sector-filter">
+      <summary
+        className="ranking-sector-trigger"
+        aria-label={`Filtrar por tipo de empresa. Selección actual: ${currentLabel}`}
+      >
+        {currentLabel}
+      </summary>
+      <div className="ranking-sector-panel" role="group" aria-label="Tipos de empresa">
+        <button
+          className="ranking-sector-option"
+          type="button"
+          aria-pressed={selectedSector === "all"}
+          onClick={(event) => chooseSector(event, "all")}
+        >
+          Todos los tipos
+        </button>
+        {sectors.map((sector) => (
+          <button
+            className="ranking-sector-option"
+            key={sector}
+            type="button"
+            aria-pressed={selectedSector === sector}
+            onClick={(event) => chooseSector(event, sector)}
+          >
+            {sector}
+          </button>
+        ))}
+      </div>
+    </details>
+  );
+}
+
+export default function TechUruguayLanding({ initialCompanies = TECHSURUGUAY_COMPANIES }: { initialCompanies?: TechUruguayCompany[] }) {
+  const [companies, setCompanies] = useState<TechUruguayCompany[]>(() => cloneCompanies(initialCompanies));
   const [openName, setOpenName] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedSector, setSelectedSector] = useState("all");
+  const [rankingSort, setRankingSort] = useState<RankingSort>("position");
+  const [sortDirection, setSortDirection] = useState<SortDirection>("asc");
 
   useEffect(() => {
     if (!isSupabaseConfigured()) return;
-
     getOnlineCompanies(createSupabaseBrowserClient())
-      .then((onlineCompanies) => {
-        if (onlineCompanies?.length) setCompanies(onlineCompanies);
-      })
-      .catch(() => {
-        // Keep the bundled ranking available if the public database is temporarily unavailable.
-      });
+      .then((onlineCompanies) => { if (onlineCompanies?.length) setCompanies(onlineCompanies); })
+      .catch(() => { /* Keep the bundled ranking if the public database is unavailable. */ });
   }, []);
 
   const ranked = useMemo(() => getRankedCompanies(companies), [companies]);
-  const sectors = useMemo(() => new Set(ranked.map((company) => company.sector || "Sin clasificar")).size, [ranked]);
+  const podium = useMemo(
+    () => [ranked[1], ranked[0], ranked[2]].filter((company): company is RankedCompany => Boolean(company)),
+    [ranked],
+  );
+  const sectors = useMemo(
+    () => Array.from(new Set(ranked.map((company) => company.sector || "Sin clasificar"))).sort((a, b) => a.localeCompare(b, "es")),
+    [ranked],
+  );
+  const visibleRanked = useMemo(() => {
+    const normalizedQuery = searchQuery.trim().toLocaleLowerCase("es");
+
+    return ranked
+      .filter((company) => !normalizedQuery || company.name.toLocaleLowerCase("es").includes(normalizedQuery))
+      .filter((company) => selectedSector === "all" || (company.sector || "Sin clasificar") === selectedSector)
+      .slice()
+      .sort((a, b) => {
+        if (rankingSort === "founded") {
+          const isFoundedAEmpty = a.founded === undefined || a.founded === null;
+          const isFoundedBEmpty = b.founded === undefined || b.founded === null;
+          const foundedA = a.founded ?? 0;
+          const foundedB = b.founded ?? 0;
+          if (isFoundedAEmpty || isFoundedBEmpty) {
+            if (isFoundedAEmpty === isFoundedBEmpty) return 0;
+            return isFoundedAEmpty ? 1 : -1;
+          }
+
+          const comparison = foundedA - foundedB || a.position - b.position;
+          return sortDirection === "asc" ? comparison : -comparison;
+        }
+
+        const comparison = a.position - b.position;
+        return sortDirection === "asc" ? comparison : -comparison;
+      });
+  }, [ranked, rankingSort, searchQuery, selectedSector, sortDirection]);
+
+  const updateRankingSort = (nextSort: RankingSort) => {
+    if (rankingSort === nextSort) {
+      setSortDirection((currentDirection) => (currentDirection === "asc" ? "desc" : "asc"));
+      return;
+    }
+
+    setRankingSort(nextSort);
+    setSortDirection("asc");
+  };
+
+  const positionDirection = rankingSort === "position" ? sortDirection : "asc";
+  const foundedDirection = rankingSort === "founded" ? sortDirection : "asc";
+
+  const openFromPodium = (company: RankedCompany) => {
+    setOpenName(company.name);
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        const rankingItem = document.getElementById(`ranking-company-${company.position}`);
+        if (!rankingItem) return;
+
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        rankingItem.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+        rankingItem.querySelector<HTMLButtonElement>("button")?.focus({ preventScroll: true });
+      });
+    });
+  };
 
   return (
-    <div className="site-shell min-h-dvh text-slate-50">
-      <main className="mobile-safe-area mx-auto max-w-7xl pb-16 pt-8 sm:px-6 sm:pb-20 sm:pt-12 lg:px-8">
-        <section className="relative overflow-hidden rounded-[28px] border border-white/10 bg-slate-950/45 px-5 py-8 shadow-[0_32px_100px_rgba(2,8,23,0.32)] backdrop-blur-sm sm:rounded-[36px] sm:px-9 sm:py-11">
-          <div className="absolute inset-y-0 right-0 w-1/2 bg-[radial-gradient(circle_at_70%_45%,rgba(34,211,238,0.18),transparent_47%)]" />
-          <div className="relative max-w-4xl">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.34em] text-cyan-200/80 sm:text-xs">Ecosistema tecnológico uruguayo</p>
-            <h1 className="mt-4 max-w-3xl text-4xl font-semibold tracking-[-0.055em] text-white sm:text-6xl">El ranking que sigue a las techs de Uruguay.</h1>
-            <p className="mt-5 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">Una lectura rápida y ordenada de las empresas que están construyendo tecnología desde Uruguay.</p>
-            <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 border-t border-white/10 pt-5 text-sm">
-              <p><span className="font-semibold text-white">{ranked.length}</span> <span className="text-slate-400">empresas</span></p>
-              <p><span className="font-semibold text-white">{sectors}</span> <span className="text-slate-400">tipos de empresa</span></p>
-              <p className="text-slate-400">Hacé clic en una fila para ver el detalle.</p>
+    <div className="site-shell min-h-dvh">
+      <main className="landing-main mobile-safe-area mx-auto max-w-7xl pb-16 pt-4 sm:px-6 sm:pb-20 sm:pt-6 lg:px-8">
+        <header className="landing-hero">
+          <h1>Startups y empresas de tecnología en Uruguay.</h1>
+          <p className="landing-intro">Un directorio editorial para explorar las empresas tech uruguayas; startups, fintech y compañías de software que lideran la innovación en el país.</p>
+        </header>
+
+        {podium.length === 3 ? (
+          <section className="podium-section" style={{ minHeight: "auto" }} aria-labelledby="podium-title">
+            <h2 id="podium-title">Las tres que llevan el liderazgo</h2>
+            <div className="podium-grid">{podium.map((company) => <PodiumCompany key={company.name} company={company} onSelect={() => openFromPodium(company)} />)}</div>
+          </section>
+        ) : null}
+
+        <section className="ranking-section" aria-label="Ranking de empresas">
+          <div className="ranking-toolbar">
+            <div className="ranking-search">
+              <label className="sr-only" htmlFor="ranking-search">Buscar empresa</label>
+              <input
+                className="ranking-search-input"
+                id="ranking-search"
+                type="search"
+                aria-label="Buscar empresa"
+                value={searchQuery}
+                placeholder="Escribí el nombre de una empresa"
+                autoComplete="off"
+                onChange={(event) => {
+                  setSearchQuery(event.target.value);
+                  setOpenName(null);
+                }}
+              />
+            </div>
+            <div className="ranking-mobile-controls" aria-label="Filtros y orden del ranking">
+              <button
+                className={`ranking-filter-control${rankingSort === "position" ? " is-active" : ""}`}
+                type="button"
+                aria-pressed={rankingSort === "position"}
+                aria-label={`Ordenar por posición. Orden actual: ${positionDirection === "asc" ? "ascendente" : "descendente"}.`}
+                data-direction={positionDirection}
+                onClick={() => updateRankingSort("position")}
+              >
+                Pos.
+              </button>
+              <SectorFilter
+                sectors={sectors}
+                selectedSector={selectedSector}
+                onSelect={(sector) => {
+                  setSelectedSector(sector);
+                  setOpenName(null);
+                }}
+              />
+              <button
+                className={`ranking-filter-control${rankingSort === "founded" ? " is-active" : ""}`}
+                type="button"
+                aria-pressed={rankingSort === "founded"}
+                aria-label={`Ordenar por fundación. Orden actual: ${foundedDirection === "asc" ? "ascendente" : "descendente"}.`}
+                data-direction={foundedDirection}
+                onClick={() => updateRankingSort("founded")}
+              >
+                Fundación
+              </button>
             </div>
           </div>
+
+          <div className="ranking-header">
+            <button
+              className={`ranking-header-action${rankingSort === "position" ? " is-active" : ""}`}
+              type="button"
+              aria-pressed={rankingSort === "position"}
+              aria-label={`Ordenar por posición. Orden actual: ${positionDirection === "asc" ? "ascendente" : "descendente"}.`}
+              data-direction={positionDirection}
+              onClick={() => updateRankingSort("position")}
+            >
+              Pos.
+            </button>
+            <div>Empresa</div>
+            <div className="ranking-type ranking-type-filter">
+              <SectorFilter
+                sectors={sectors}
+                selectedSector={selectedSector}
+                onSelect={(sector) => {
+                  setSelectedSector(sector);
+                  setOpenName(null);
+                }}
+              />
+            </div>
+            <button
+              className={`ranking-founded ranking-header-action${rankingSort === "founded" ? " is-active" : ""}`}
+              type="button"
+              aria-pressed={rankingSort === "founded"}
+              aria-label={`Ordenar por fundación. Orden actual: ${foundedDirection === "asc" ? "ascendente" : "descendente"}.`}
+              data-direction={foundedDirection}
+              onClick={() => updateRankingSort("founded")}
+            >
+              Fundación
+            </button>
+            <div className="ranking-money">Valoración estimada</div>
+            <div />
+          </div>
+          <ol className="ranking-list">
+            {visibleRanked.length > 0 ? visibleRanked.map((company) => (
+              <RankingRow key={company.name} company={company} expanded={openName === company.name} onToggle={() => setOpenName((current) => current === company.name ? null : company.name)} />
+            )) : (
+              <li className="ranking-empty" aria-live="polite">No encontramos empresas con esos filtros.</li>
+            )}
+          </ol>
         </section>
 
-        <section className="mt-8 sm:mt-10" aria-labelledby="ranking-title">
-          <div className="mb-4 flex items-end justify-between gap-5">
-            <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.34em] text-cyan-200/75">Clasificación</p>
-              <h2 id="ranking-title" className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-white sm:text-3xl">Empresas en foco</h2>
-            </div>
-            <p className="hidden text-right text-xs text-slate-400 sm:block">Datos consultados desde la base editorial.</p>
-          </div>
-
-          <div className="overflow-hidden rounded-[24px] border border-white/10 bg-slate-950/55 shadow-[0_24px_80px_rgba(2,8,23,0.22)] sm:rounded-[30px]">
-            <div className="ranking-header" aria-hidden="true">
-              <span>Pos.</span><span>Empresa</span><span className="ranking-type">Tipo</span><span className="ranking-founded">Fundación</span><span className="ranking-money">Valoración</span><span />
-            </div>
-            <ol className="divide-y divide-white/10">
-              {ranked.map((company) => (
-                <RankingRow
-                  key={company.name}
-                  company={company}
-                  expanded={openName === company.name}
-                  onToggle={() => setOpenName((current) => current === company.name ? null : company.name)}
-                />
-              ))}
-            </ol>
-          </div>
+        <section className="ranking-context" aria-labelledby="ranking-context-title">
+          <h2 id="ranking-context-title">Directorio de startups y empresas tech uruguayas</h2>
+          <p>Techs Uruguay reúne información editorial sobre compañías tecnológicas con actividad en Uruguay. Cada ficha incluye su sector, año de fundación, valoración estimada cuando está disponible, servicios y equipo.</p>
+          <p>La clasificación es una referencia editorial para descubrir el ecosistema tecnológico uruguayo. Usá los filtros del ranking para recorrer empresas de software, fintech, inteligencia artificial, e-commerce y otros sectores.</p>
         </section>
+
+        <details className="directory-links">
+          <summary>Explorar fichas de empresas</summary>
+          <ul>
+            {ranked.map((company) => (
+              <li key={company.name}>
+                <a href={`/empresas/${slugifyCompanyName(company.name)}`}>
+                  <strong>{company.name}</strong>
+                  <small>{company.sector || "Empresa tecnológica"}</small>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </details>
+
+        <footer
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "4rem",
+            paddingTop: "1.5rem",
+          }}
+        >
+          <a
+            href="https://www.enzothome.com"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex min-h-11 items-center text-sm font-semibold text-slate-950 underline decoration-slate-500 underline-offset-4 transition hover:text-red-800"
+            style={{ gap: "0.75rem" }}
+          >
+            <img
+              src="/LogoET.png"
+              alt=""
+              width={32}
+              height={32}
+              style={{ width: "2rem", height: "2rem", flex: "none", borderRadius: "0.35rem", objectFit: "cover" }}
+            />
+            Página hecha por Enzo Thome
+          </a>
+        </footer>
       </main>
     </div>
   );

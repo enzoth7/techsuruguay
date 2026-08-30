@@ -53,6 +53,15 @@ export const TECHSURUGUAY_REVENUE_BUCKETS: RevenueBucket[] = [
 
 export const TECHSURUGUAY_COMPANIES = rawCompanies as TechUruguayCompany[];
 
+export function slugifyCompanyName(name: string) {
+  return name
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLocaleLowerCase("es")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 export function cloneCompanies(companies: TechUruguayCompany[]): TechUruguayCompany[] {
   return companies.map((company) => ({
     ...company,

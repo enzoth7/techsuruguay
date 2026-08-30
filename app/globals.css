@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #08111f;
+  --background: #dedddb;
   --foreground: #f2f7ff;
 }
 
@@ -22,10 +22,9 @@ body {
   min-height: 100dvh;
   overflow-x: clip;
   background:
-    radial-gradient(circle at 15% 0%, rgba(37, 99, 235, 0.32), transparent 30%),
-    radial-gradient(circle at 90% 20%, rgba(14, 165, 233, 0.22), transparent 28%),
-    radial-gradient(circle at 48% 100%, rgba(30, 64, 175, 0.2), transparent 36%),
-    linear-gradient(145deg, #020617 0%, #07152f 48%, #071d42 100%);
+    radial-gradient(ellipse 34% 95% at 16% 48%, rgb(255 255 255 / 0.78), transparent 72%),
+    radial-gradient(ellipse 28% 110% at 84% 46%, rgb(255 255 255 / 0.58), transparent 70%),
+    linear-gradient(108deg, #cfcecc 0%, #f4f3f1 27%, #d2d1cf 52%, #f7f6f4 75%, #c8c7c5 100%);
   color: var(--foreground);
   font-family: var(--font-sans);
   text-rendering: optimizeLegibility;
@@ -51,11 +50,46 @@ body {
 }
 
 ::selection {
-  background: rgba(96, 165, 250, 0.28);
+  background: rgba(244, 63, 94, 0.34);
   color: var(--foreground);
 }
 
 @layer utilities {
+  .site-shell {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .site-shell::before,
+  .site-shell::after {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    content: "";
+  }
+
+  .site-shell::before {
+    background-image:
+      radial-gradient(circle, rgb(71 85 105 / 0.3) 0 0.58px, transparent 0.82px),
+      radial-gradient(circle, rgb(255 255 255 / 0.82) 0 0.52px, transparent 0.76px),
+      repeating-linear-gradient(118deg, transparent 0 4px, rgb(255 255 255 / 0.3) 4px 5px, rgb(71 85 105 / 0.06) 5px 6px, transparent 6px 10px);
+    background-position: 0 0, 2px 2px;
+    background-size: 4px 4px;
+    opacity: 0.48;
+    -webkit-mask-image: linear-gradient(108deg, transparent 8%, rgb(0 0 0 / 0.18) 24%, #000 42%, #000 68%, rgb(0 0 0 / 0.18) 86%, transparent 100%);
+    mask-image: linear-gradient(108deg, transparent 8%, rgb(0 0 0 / 0.18) 24%, #000 42%, #000 68%, rgb(0 0 0 / 0.18) 86%, transparent 100%);
+  }
+
+  .site-shell::after {
+    background:
+      radial-gradient(ellipse 16% 100% at 30% 48%, rgb(15 23 42 / 0.18), transparent 72%),
+      radial-gradient(ellipse 18% 110% at 72% 52%, rgb(15 23 42 / 0.2), transparent 70%),
+      linear-gradient(108deg, transparent 18%, rgb(255 255 255 / 0.42) 34%, rgb(15 23 42 / 0.1) 50%, rgb(255 255 255 / 0.38) 66%, transparent 84%);
+    filter: blur(18px);
+    opacity: 0.78;
+  }
+
   .ranking-header,
   .ranking-row {
     display: grid;
@@ -92,7 +126,7 @@ body {
 
   .ranking-row:hover,
   .ranking-item.is-open .ranking-row {
-    background: linear-gradient(90deg, rgb(34 211 238 / 0.1), transparent 72%);
+    background: linear-gradient(90deg, rgb(244 63 94 / 0.1), transparent 72%);
   }
 
   .ranking-row:focus-visible {
@@ -176,6 +210,899 @@ body {
       padding: 1.75rem 1.5rem 2rem 5.5rem;
     }
   }
+
+  .landing-hero {
+    border-bottom: 2px solid rgb(15 23 42 / 0.72);
+    padding: 0.5rem 0 1.25rem;
+    color: rgb(15 23 42);
+  }
+
+  .landing-kicker,
+  .section-kicker {
+    color: rgb(71 85 105);
+    font-size: 0.625rem;
+    font-weight: 800;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+  }
+
+  .landing-hero h1 {
+    max-width: 52rem;
+    margin-top: 0;
+    color: rgb(2 6 23);
+    font-size: clamp(2.35rem, 5.35vw, 4.65rem);
+    font-weight: 750;
+    letter-spacing: -0.065em;
+    line-height: 1.04;
+  }
+
+  .landing-intro {
+    max-width: 42rem;
+    margin-top: 0.8rem;
+    color: rgb(51 65 85);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .podium-section {
+    margin-top: 2rem;
+  }
+
+  .podium-section > h2,
+  .ranking-title-row h2 {
+    margin-top: 0;
+    color: rgb(2 6 23);
+    font-size: clamp(1.7rem, 3vw, 2.6rem);
+    font-weight: 750;
+    letter-spacing: -0.045em;
+  }
+
+  .podium-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: end;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .rank-gold { --rank-color: #8a5a00; --rank-soft: rgb(234 179 8 / 0.18); }
+  .rank-silver { --rank-color: #475569; --rank-soft: rgb(100 116 139 / 0.16); }
+  .rank-bronze { --rank-color: #9a4b16; --rank-soft: rgb(194 65 12 / 0.14); }
+  .rank-red { --rank-color: #b91c1c; --rank-soft: rgb(220 38 38 / 0.1); }
+  .rank-blue { --rank-color: #0e7490; --rank-soft: rgb(8 145 178 / 0.1); }
+  .rank-graphite { --rank-color: #334155; --rank-soft: rgb(71 85 105 / 0.08); }
+
+  .podium-entry {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid rgb(15 23 42 / 0.15);
+    border-top: 6px solid var(--rank-color);
+    border-radius: 1.35rem 1.35rem 0.4rem 0.4rem;
+    padding: 1rem 0.65rem 0.85rem;
+    color: var(--rank-color);
+    box-shadow: 0 22px 55px rgb(15 23 42 / 0.18);
+    transition: transform 220ms cubic-bezier(0.22, 0.8, 0.36, 1), box-shadow 220ms ease;
+  }
+
+  .podium-entry:hover,
+  .podium-entry:focus-within {
+    z-index: 1;
+    transform: translateY(-10px) scale(1.012);
+    box-shadow: 0 34px 70px rgb(15 23 42 / 0.28);
+  }
+
+  .podium-action {
+    width: 100%;
+    min-height: inherit;
+    color: inherit;
+    cursor: pointer;
+    text-align: left;
+    touch-action: manipulation;
+  }
+
+  .podium-action:focus-visible {
+    border-radius: 0.85rem;
+    outline: 3px solid rgb(2 6 23 / 0.82);
+    outline-offset: -5px;
+  }
+
+  .podium-entry.rank-gold {
+    --rank-color: #684200;
+    background:
+      linear-gradient(118deg, rgb(255 255 255 / 0.58), transparent 34%),
+      linear-gradient(145deg, #fff1a8 0%, #e1b73f 56%, #b77705 100%);
+  }
+
+  .podium-entry.rank-silver {
+    --rank-color: #475569;
+    background:
+      linear-gradient(118deg, rgb(255 255 255 / 0.95), transparent 38%),
+      linear-gradient(145deg, #ffffff 0%, #eceff2 58%, #cbd2d9 100%);
+  }
+
+  .podium-entry.rank-bronze {
+    --rank-color: #642a08;
+    background:
+      linear-gradient(118deg, rgb(255 255 255 / 0.42), transparent 34%),
+      linear-gradient(145deg, #f6c59c 0%, #c8753d 56%, #934514 100%);
+  }
+
+  .podium-1 { min-height: 12rem; }
+  .podium-2 { min-height: 10.5rem; }
+  .podium-3 { min-height: 10rem; }
+
+  .podium-rank {
+    position: absolute;
+    top: 0.75rem;
+    right: 0;
+    color: var(--rank-color);
+    font-size: clamp(1.5rem, 5vw, 4rem);
+    font-weight: 900;
+    letter-spacing: -0.08em;
+    line-height: 0.9;
+    writing-mode: vertical-rl;
+  }
+
+  .podium-logo {
+    display: flex;
+    width: clamp(3.5rem, 8vw, 5.5rem);
+    height: clamp(3.5rem, 8vw, 5.5rem);
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid rgb(15 23 42 / 0.16);
+    border-radius: 0.35rem;
+    background: rgb(255 255 255 / 0.84);
+    box-shadow: 0 16px 42px rgb(15 23 42 / 0.14);
+    color: var(--rank-color);
+    font-weight: 800;
+  }
+
+  .podium-copy {
+    margin-top: 0.55rem;
+    padding-right: 1.5rem;
+  }
+
+  .podium-copy h3 {
+    overflow: hidden;
+    margin-top: 0.2rem;
+    color: rgb(2 6 23);
+    font-size: clamp(0.9rem, 2.5vw, 1.55rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .podium-copy > p:last-child {
+    overflow: hidden;
+    margin-top: 0.15rem;
+    color: rgb(71 85 105);
+    font-size: 0.7rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .podium-entry.rank-gold .podium-copy > p:last-child,
+  .podium-entry.rank-bronze .podium-copy > p:last-child {
+    color: rgb(48 25 9 / 0.82);
+  }
+
+  .ranking-section {
+    margin-top: 4rem;
+  }
+
+  .ranking-toolbar {
+    display: grid;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .ranking-search {
+    width: min(100%, 26rem);
+  }
+
+  .ranking-search-label {
+    display: block;
+    margin-bottom: 0.4rem;
+    color: rgb(71 85 105);
+    font-size: 0.625rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .ranking-search-input,
+  .ranking-sector-trigger,
+  .ranking-filter-control {
+    min-height: 2.75rem;
+    border: 1px solid rgb(15 23 42 / 0.3);
+    border-radius: 0;
+    background: rgb(255 255 255 / 0.3);
+    color: rgb(15 23 42);
+    font: inherit;
+  }
+
+  .ranking-search-input {
+    width: 100%;
+    padding: 0 0.8rem;
+    font-size: 0.82rem;
+    outline: none;
+  }
+
+  .ranking-search-input::placeholder {
+    color: rgb(100 116 139);
+  }
+
+  .ranking-search-input:focus {
+    border-color: rgb(15 23 42 / 0.85);
+    box-shadow: inset 0 -2px 0 rgb(15 23 42 / 0.85);
+  }
+
+  .ranking-mobile-controls {
+    display: grid;
+    grid-template-columns: 0.72fr 1.38fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .ranking-filter-control,
+  .ranking-sector-trigger {
+    min-width: 0;
+    padding: 0 0.55rem;
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .ranking-filter-control {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    cursor: pointer;
+  }
+
+  .ranking-filter-control::after,
+  .ranking-header-action::after,
+  .ranking-sector-trigger::after {
+    width: 0.38rem;
+    height: 0.38rem;
+    flex: none;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    content: "";
+  }
+
+  .ranking-filter-control::after,
+  .ranking-header-action::after {
+    transform: rotate(-135deg);
+  }
+
+  .ranking-filter-control[data-direction="desc"]::after,
+  .ranking-header-action[data-direction="desc"]::after {
+    transform: rotate(45deg);
+  }
+
+  .ranking-sector-filter {
+    position: relative;
+    min-width: 0;
+  }
+
+  .ranking-sector-filter[open] {
+    z-index: 20;
+  }
+
+  .ranking-sector-trigger {
+    display: inline-flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    list-style: none;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .ranking-sector-trigger::-webkit-details-marker {
+    display: none;
+  }
+
+  .ranking-sector-trigger::after {
+    transform: rotate(45deg);
+    transition: transform 180ms ease;
+  }
+
+  .ranking-sector-filter[open] > .ranking-sector-trigger::after {
+    transform: rotate(-135deg);
+  }
+
+  .ranking-sector-panel {
+    position: absolute;
+    top: calc(100% + 0.4rem);
+    left: 0;
+    display: grid;
+    width: 14rem;
+    max-height: 17rem;
+    overflow-y: auto;
+    border: 1px solid rgb(15 23 42 / 0.42);
+    border-radius: 0;
+    background: rgb(239 238 236 / 0.98);
+    box-shadow: 0 18px 40px rgb(15 23 42 / 0.2);
+  }
+
+  .ranking-sector-option {
+    min-height: 2.75rem;
+    border-bottom: 1px solid rgb(15 23 42 / 0.14);
+    padding: 0.65rem 0.75rem;
+    color: rgb(51 65 85);
+    font-size: 0.68rem;
+    font-weight: 750;
+    letter-spacing: 0.08em;
+    text-align: left;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .ranking-sector-option:last-child {
+    border-bottom: 0;
+  }
+
+  .ranking-sector-option:hover,
+  .ranking-sector-option[aria-pressed="true"] {
+    background: rgb(15 23 42 / 0.09);
+    color: rgb(2 6 23);
+  }
+
+  .ranking-sector-option:focus-visible {
+    outline: 2px solid rgb(15 23 42 / 0.82);
+    outline-offset: -2px;
+  }
+
+  .ranking-filter-control:hover,
+  .ranking-filter-control.is-active {
+    background: rgb(15 23 42 / 0.08);
+  }
+
+  .ranking-filter-control:focus-visible,
+  .ranking-sector-trigger:focus-visible {
+    outline: 2px solid rgb(15 23 42 / 0.82);
+    outline-offset: -2px;
+  }
+
+  .ranking-title-row {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .ranking-title-row > p {
+    display: none;
+    color: rgb(71 85 105);
+    font-size: 0.75rem;
+  }
+
+  .ranking-header,
+  .ranking-row {
+    grid-template-columns: 3.5rem minmax(0, 1fr) 2.25rem;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .ranking-header {
+    min-height: 2.75rem;
+    border-top: 2px solid rgb(15 23 42 / 0.72);
+    border-bottom: 1px solid rgb(15 23 42 / 0.28);
+    background: transparent;
+    color: rgb(71 85 105);
+  }
+
+  .ranking-header-action {
+    display: inline-flex;
+    align-self: stretch;
+    align-items: center;
+    gap: 0.4rem;
+    min-width: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    text-align: left;
+    text-transform: inherit;
+    cursor: pointer;
+  }
+
+  .ranking-header-action:hover,
+  .ranking-header-action.is-active {
+    color: rgb(2 6 23);
+    background: rgb(15 23 42 / 0.06);
+  }
+
+  .ranking-header-action:focus-visible {
+    outline: 2px solid rgb(15 23 42 / 0.82);
+    outline-offset: -2px;
+  }
+
+  .ranking-type-filter {
+    align-self: stretch;
+    min-width: 0;
+  }
+
+  .ranking-header .ranking-sector-filter {
+    display: flex;
+    height: 100%;
+    align-items: center;
+  }
+
+  .ranking-header .ranking-sector-trigger {
+    width: auto;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font-size: inherit;
+    letter-spacing: inherit;
+  }
+
+  .ranking-header .ranking-sector-trigger:hover {
+    color: rgb(2 6 23);
+    background: rgb(15 23 42 / 0.06);
+  }
+
+  .ranking-list {
+    border-bottom: 2px solid rgb(15 23 42 / 0.72);
+  }
+
+  .ranking-empty {
+    padding: 2rem 0.75rem;
+    color: rgb(71 85 105);
+    font-size: 0.85rem;
+  }
+
+  .ranking-context {
+    max-width: 52rem;
+    margin-top: 4rem;
+    border-top: 2px solid rgb(15 23 42 / 0.72);
+    padding-top: 1.5rem;
+  }
+
+  .ranking-context h2,
+  .company-profile-section h2 {
+    color: rgb(2 6 23);
+    font-size: clamp(1.35rem, 2.5vw, 2rem);
+    font-weight: 750;
+    letter-spacing: -0.035em;
+  }
+
+  .ranking-context p {
+    margin-top: 0.75rem;
+    color: rgb(51 65 85);
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+
+  .directory-links {
+    margin-top: 2.5rem;
+    border-top: 1px solid rgb(15 23 42 / 0.22);
+    border-bottom: 1px solid rgb(15 23 42 / 0.22);
+  }
+
+  .directory-links summary {
+    display: flex;
+    min-height: 3.25rem;
+    align-items: center;
+    justify-content: space-between;
+    color: rgb(2 6 23);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    list-style: none;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .directory-links summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .directory-links summary::after {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    content: "";
+    transform: rotate(45deg) translateY(-0.18rem);
+    transition: transform 180ms ease;
+  }
+
+  .directory-links[open] summary::after {
+    transform: rotate(-135deg) translate(-0.12rem, -0.12rem);
+  }
+
+  .directory-links summary:focus-visible,
+  .directory-links a:focus-visible {
+    outline: 2px solid rgb(15 23 42 / 0.82);
+    outline-offset: -2px;
+  }
+
+  .directory-links ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: 0;
+    margin-bottom: 1rem;
+    border-top: 1px solid rgb(15 23 42 / 0.16);
+  }
+
+  .directory-links li {
+    border-bottom: 1px solid rgb(15 23 42 / 0.14);
+  }
+
+  .directory-links a {
+    display: flex;
+    min-height: 3.25rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.6rem 0.75rem;
+    color: rgb(2 6 23);
+    font-size: 0.86rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .directory-links a:hover {
+    background: rgb(15 23 42 / 0.06);
+  }
+
+  .directory-links a small {
+    flex: none;
+    color: rgb(71 85 105);
+    font-size: 0.68rem;
+    font-weight: 500;
+    text-align: right;
+  }
+
+  .company-profile {
+    margin-top: 1.5rem;
+    border-top: 2px solid rgb(15 23 42 / 0.72);
+    padding-top: 1.5rem;
+  }
+
+  .company-profile-header {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .company-profile-logo {
+    width: 5.5rem;
+    height: 5.5rem;
+    object-fit: cover;
+    border: 1px solid rgb(15 23 42 / 0.16);
+    border-radius: 0.5rem;
+    background: rgb(255 255 255 / 0.52);
+  }
+
+  .company-profile h1 {
+    margin-top: 0.45rem;
+    color: rgb(2 6 23);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 750;
+    letter-spacing: -0.055em;
+    line-height: 1.05;
+  }
+
+  .company-profile-header > div > p:last-child,
+  .company-profile-section p {
+    margin-top: 1rem;
+    color: rgb(51 65 85);
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .company-profile-facts {
+    display: grid;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding: 1rem 0;
+    border-top: 1px solid rgb(15 23 42 / 0.2);
+    border-bottom: 1px solid rgb(15 23 42 / 0.2);
+  }
+
+  .company-profile-facts dt {
+    color: rgb(71 85 105);
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .company-profile-facts dd {
+    margin-top: 0.35rem;
+    color: rgb(2 6 23);
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .company-profile-section {
+    margin-top: 2.5rem;
+  }
+
+  .company-profile-section ul {
+    display: grid;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    color: rgb(51 65 85);
+    line-height: 1.5;
+  }
+
+  .company-profile-section li::before {
+    margin-right: 0.55rem;
+    color: rgb(154 75 22);
+    content: "—";
+  }
+
+  .company-profile-link {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    margin-top: 2.5rem;
+    color: rgb(2 6 23);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: rgb(71 85 105);
+    text-underline-offset: 0.25rem;
+  }
+
+  .ranking-item {
+    border-bottom: 1px solid rgb(15 23 42 / 0.22);
+  }
+
+  .ranking-item:last-child {
+    border-bottom: 0;
+  }
+
+  .ranking-row {
+    min-height: 4.8rem;
+    color: rgb(15 23 42);
+  }
+
+  .ranking-row:hover,
+  .ranking-item.is-open .ranking-row {
+    background: linear-gradient(90deg, var(--rank-soft), transparent 74%);
+    box-shadow: inset 4px 0 0 var(--rank-color);
+  }
+
+  .ranking-row:focus-visible {
+    outline-color: var(--rank-color);
+  }
+
+  .ranking-position {
+    color: var(--rank-color);
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    padding-left: 0.75rem;
+  }
+
+  .ranking-company {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .ranking-logo {
+    display: flex;
+    width: 2.75rem;
+    height: 2.75rem;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid rgb(15 23 42 / 0.14);
+    border-radius: 0.3rem;
+    background: rgb(255 255 255 / 0.4);
+    color: var(--rank-color);
+    font-size: 0.7rem;
+    font-weight: 800;
+  }
+
+  .ranking-name {
+    overflow: hidden;
+    color: rgb(2 6 23);
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .ranking-mobile-valuation {
+    overflow: hidden;
+    margin-top: 0.1rem;
+    color: var(--rank-color);
+    font-size: 0.72rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .ranking-mobile-facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgb(15 23 42 / 0.15);
+  }
+
+  .ranking-mobile-facts > div {
+    min-width: 0;
+  }
+
+  .ranking-mobile-facts dt {
+    color: var(--rank-color);
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .ranking-mobile-facts dd {
+    margin-top: 0.35rem;
+    color: rgb(15 23 42);
+    font-size: 0.82rem;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  .ranking-cell {
+    color: rgb(51 65 85);
+  }
+
+  .ranking-money {
+    color: rgb(15 23 42);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ranking-chevron {
+    color: var(--rank-color);
+    font-weight: 500;
+  }
+
+  .ranking-details {
+    border-top-color: rgb(15 23 42 / 0.15);
+    border-left: 4px solid var(--rank-color);
+    background: transparent;
+    color: rgb(15 23 42);
+  }
+
+  .ranking-detail-label {
+    color: var(--rank-color);
+  }
+
+  @media (min-width: 48rem) {
+    .landing-hero {
+      padding-top: 0.5rem;
+      padding-bottom: 1.5rem;
+    }
+
+    .landing-intro {
+      font-size: 1.125rem;
+    }
+
+    .podium-grid {
+      gap: 1.5rem;
+    }
+
+    .podium-entry {
+      padding: 1rem 2.5rem 1rem 1rem;
+    }
+
+    .podium-1 { min-height: 18.5rem; }
+    .podium-2 { min-height: 16.5rem; }
+    .podium-3 { min-height: 15.5rem; }
+
+    .ranking-title-row > p {
+      display: block;
+    }
+
+    .ranking-toolbar {
+      margin-bottom: 1.25rem;
+    }
+
+    .ranking-mobile-controls {
+      display: none;
+    }
+
+    .company-profile-header {
+      grid-template-columns: auto minmax(0, 1fr);
+      align-items: start;
+    }
+
+    .company-profile-facts {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .ranking-header .ranking-founded.ranking-header-action {
+      display: inline-flex;
+    }
+
+    .ranking-header,
+    .ranking-row {
+      grid-template-columns: 5rem minmax(0, 1.55fr) minmax(8rem, 0.85fr) 7rem minmax(9rem, 1fr) 2rem;
+      padding-right: 0.5rem;
+      padding-left: 0.5rem;
+    }
+
+    .ranking-row {
+      min-height: 5.35rem;
+    }
+
+    .ranking-logo {
+      width: 3rem;
+      height: 3rem;
+    }
+
+    .ranking-name {
+      font-size: 1.1rem;
+    }
+
+    .ranking-position {
+      padding-left: 0;
+    }
+
+    .ranking-mobile-valuation,
+    .ranking-mobile-facts {
+      display: none;
+    }
+
+    .ranking-details {
+      padding: 1.75rem 1.5rem 2rem 6rem;
+    }
+  }
+
+  @media (min-width: 48rem) and (min-height: 50rem) {
+    .site-shell > .landing-main {
+      padding-top: 4.5rem;
+    }
+
+    .landing-hero {
+      padding-top: 1rem;
+    }
+
+    .podium-section {
+      margin-top: 3rem;
+    }
+
+    .podium-grid {
+      margin-top: 1.5rem;
+    }
+
+    .ranking-section {
+      margin-top: 10rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .podium-entry {
+      transition: none;
+    }
+
+    .podium-entry:hover,
+    .podium-entry:focus-within {
+      transform: none;
+    }
+  }
+
   .input {
     width: 100%;
     border: 1px solid rgb(255 255 255 / 0.1);

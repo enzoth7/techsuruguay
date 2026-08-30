@@ -1,13 +1,28 @@
 import TechUruguayLanding from "@/src/components/techsuruguay/TechUruguayLanding";
-import { sortCompanies, TECHSURUGUAY_COMPANIES } from "@/src/lib/techsuruguay";
+import { getPublishedCompanies } from "@/src/lib/published-companies";
+import { slugifyCompanyName, sortCompanies } from "@/src/lib/techsuruguay";
 import { siteConfig } from "@/src/lib/site";
 
-export default function Home() {
-  const companies = sortCompanies(TECHSURUGUAY_COMPANIES);
+export const revalidate = 3600;
+
+export default async function Home() {
+  const companies = sortCompanies(await getPublishedCompanies());
   const homeUrl = siteConfig.url.toString();
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
+      {
+        "@type": "Organization",
+        "@id": homeUrl + "#organization",
+        name: siteConfig.name,
+        url: homeUrl,
+        logo: new URL("/Logo.png", siteConfig.url).toString(),
+        description: siteConfig.description,
+        areaServed: {
+          "@type": "Country",
+          name: siteConfig.countryName,
+        },
+      },
       {
         "@type": "WebSite",
         "@id": homeUrl + "#website",
@@ -30,6 +45,9 @@ export default function Home() {
         isPartOf: {
           "@id": homeUrl + "#website",
         },
+        publisher: {
+          "@id": homeUrl + "#organization",
+        },
         about: {
           "@type": "Country",
           name: siteConfig.countryName,
@@ -49,9 +67,11 @@ export default function Home() {
             item: {
               "@type": "Organization",
               name: company.name,
-              url: company.website || undefined,
+              url: new URL(`/empresas/${slugifyCompanyName(company.name)}`, siteConfig.url).toString(),
               description: company.description || undefined,
               foundingDate: company.founded ? String(company.founded) : undefined,
+              industry: company.sector || undefined,
+              sameAs: company.website || undefined,
               areaServed: {
                 "@type": "Country",
                 name: siteConfig.countryName,
@@ -59,6 +79,20 @@ export default function Home() {
             },
           })),
         },
+      },
+      {
+        "@type": "Dataset",
+        "@id": homeUrl + "#dataset",
+        name: "Directorio de startups y empresas tech de Uruguay",
+        description: "Base editorial de empresas tecnológicas, startups y compañías de software con actividad en Uruguay.",
+        url: homeUrl,
+        inLanguage: siteConfig.language,
+        spatialCoverage: {
+          "@type": "Country",
+          name: siteConfig.countryName,
+        },
+        keywords: ["startups Uruguay", "empresas tech Uruguay", "empresas de software Uruguay", "fintech Uruguay"],
+        variableMeasured: ["sector", "año de fundación", "valoración estimada", "servicios", "equipo"],
       },
     ],
   };
@@ -71,7 +105,7 @@ export default function Home() {
           __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
         }}
       />
-      <TechUruguayLanding />
+      <TechUruguayLanding initialCompanies={companies} />
     </>
   );
 }

@@ -1,8 +1,13 @@
 import { MetadataRoute } from "next";
+import { getPublishedCompanies } from "@/src/lib/published-companies";
 import { siteConfig } from "@/src/lib/site";
+import { slugifyCompanyName } from "@/src/lib/techsuruguay";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const revalidate = 3600;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const homeUrl = siteConfig.url.toString();
+  const companies = await getPublishedCompanies();
 
   return [
     {
@@ -17,5 +22,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     },
+    ...companies.map((company) => ({
+      url: new URL(`/empresas/${slugifyCompanyName(company.name)}`, siteConfig.url).toString(),
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+      images: company.logoUrl ? [new URL(company.logoUrl, siteConfig.url).toString()] : undefined,
+    })),
   ];
 }

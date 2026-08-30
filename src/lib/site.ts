@@ -11,9 +11,9 @@ const normalizedSiteUrl = configuredSiteUrl.startsWith("http")
 
 export const siteConfig = {
   name: "Techs Uruguay",
-  title: "Ranking de empresas tech de Uruguay | Techs Uruguay",
+  title: "Techs Uruguay | Startups y empresas tech de Uruguay",
   description:
-    "Descubrí empresas tecnológicas, startups y compañías de software de Uruguay, ordenadas por valoración y con información sobre sus servicios y fundadores.",
+    "Directorio editorial de startups, empresas tecnológicas y compañías de software de Uruguay. Explorá su sector, fundación, valoración estimada, servicios y equipos.",
   url: new URL(normalizedSiteUrl),
   locale: "es_UY",
   language: "es-UY",
