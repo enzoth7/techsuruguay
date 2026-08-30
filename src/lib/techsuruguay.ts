@@ -8,6 +8,7 @@ export type TechUruguayFounder = {
 export type TechUruguayCompany = {
   name: string;
   sector: string;
+  countries: string[];
   founded: number | null;
   website: string;
   services: string[];
@@ -16,6 +17,38 @@ export type TechUruguayCompany = {
   founders: TechUruguayFounder[];
   logoUrl?: string;
 };
+
+export const FOUNDER_COUNTRY_NAMES: Record<string, string> = {
+  AR: "Argentina",
+  BR: "Brasil",
+  CA: "Canadá",
+  CO: "Colombia",
+  MX: "México",
+  UY: "Uruguay",
+};
+
+const DEFAULT_COMPANY_COUNTRIES: Record<string, string[]> = {
+  Akua: ["CO", "UY", "BR"],
+  Data4Sales: ["UY", "BR"],
+  DivSub: ["BR", "UY"],
+  hiSofi: ["BR", "UY"],
+  Tuna: ["BR", "UY"],
+};
+
+export function normalizeCountryCodes(countries: unknown, companyName = ""): string[] {
+  const values = Array.isArray(countries) ? countries : DEFAULT_COMPANY_COUNTRIES[companyName] ?? ["UY"];
+
+  return Array.from(new Set(
+    values
+      .map((country) => String(country).trim().toUpperCase())
+      .filter((country) => /^[A-Z]{2}$/.test(country)),
+  ));
+}
+
+export function formatFounderCountries(countries: string[]): string {
+  const normalized = normalizeCountryCodes(countries);
+  return normalized.map((country) => FOUNDER_COUNTRY_NAMES[country] ?? country).join(", ");
+}
 
 export type RevenueBucketId =
   | "under-100k"
@@ -51,7 +84,10 @@ export const TECHSURUGUAY_REVENUE_BUCKETS: RevenueBucket[] = [
   { id: "sin-dato", label: "SIN DATOS", shortLabel: "SIN DATOS" },
 ];
 
-export const TECHSURUGUAY_COMPANIES = rawCompanies as TechUruguayCompany[];
+export const TECHSURUGUAY_COMPANIES = (rawCompanies as Omit<TechUruguayCompany, "countries">[]).map((company) => ({
+  ...company,
+  countries: normalizeCountryCodes((company as TechUruguayCompany).countries, company.name),
+}));
 
 export function slugifyCompanyName(name: string) {
   return name
@@ -65,6 +101,7 @@ export function slugifyCompanyName(name: string) {
 export function cloneCompanies(companies: TechUruguayCompany[]): TechUruguayCompany[] {
   return companies.map((company) => ({
     ...company,
+    countries: normalizeCountryCodes(company.countries, company.name),
     services: Array.isArray(company.services) ? [...company.services] : [],
     founders: Array.isArray(company.founders) ? company.founders.map((founder) => ({ ...founder })) : [],
   }));
@@ -74,6 +111,7 @@ export function createBlankCompany(overrides: Partial<TechUruguayCompany> = {}):
   return {
     name: String(overrides.name ?? "").trim(),
     sector: String(overrides.sector ?? "").trim(),
+    countries: normalizeCountryCodes(overrides.countries, String(overrides.name ?? "").trim()),
     founded:
       typeof overrides.founded === "number" && Number.isFinite(overrides.founded)
         ? Math.round(overrides.founded)
@@ -98,9 +136,25 @@ export function createBlankCompany(overrides: Partial<TechUruguayCompany> = {}):
 }
 
 export function mergeCompanies(baseCompanies: TechUruguayCompany[], draftCompanies: TechUruguayCompany[]): TechUruguayCompany[] {
-  const draftByName = new Map(draftCompanies.map((company) => [company.name, company] as const));
-  const merged = baseCompanies.map((baseCompany) => draftByName.get(baseCompany.name) ?? baseCompany);
-  const extras = draftCompanies.filter((company) => !baseCompanies.some((baseCompany) => baseCompany.name === company.name));
+  const draftByKey = new Map(draftCompanies.map((company) => [slugifyCompanyName(company.name), company] as const));
+  const baseKeys = new Set(baseCompanies.map((company) => slugifyCompanyName(company.name)));
+  const merged = baseCompanies.map((baseCompany) => {
+    const draftCompany = draftByKey.get(slugifyCompanyName(baseCompany.name));
+    if (!draftCompany) return baseCompany;
+
+    const publishedValuation = Math.max(
+      baseCompany.valuation ?? 0,
+      draftCompany.valuation ?? 0,
+    );
+
+    return {
+      ...baseCompany,
+      ...draftCompany,
+      name: baseCompany.name,
+      valuation: publishedValuation > 0 ? publishedValuation : null,
+    };
+  });
+  const extras = draftCompanies.filter((company) => !baseKeys.has(slugifyCompanyName(company.name)));
 
   return cloneCompanies([...merged, ...extras]);
 }
@@ -116,6 +170,7 @@ export function normalizeCompanies(input: unknown): TechUruguayCompany[] {
     return {
       name: String(company.name ?? "").trim(),
       sector: String(company.sector ?? "").trim(),
+      countries: normalizeCountryCodes(company.countries, String(company.name ?? "").trim()),
       founded:
         typeof company.founded === "number" && Number.isFinite(company.founded)
           ? Math.round(company.founded)

@@ -74,7 +74,7 @@
       "Logística (última milla)"
     ],
     "description": "Plataforma líder de delivery en Latinoamérica que conecta usuarios con restaurantes y comercios mediante una app.",
-    "valuation": 328000000,
+    "valuation": 2000000000,
     "founders": [
       {
         "name": "Ariel Burschtin",
@@ -1087,7 +1087,7 @@
       "Notificaciones y dashboards para control y colaboración"
     ],
     "description": "Plataforma que revoluciona el compliance mediante agentes autónomos de IA, capaces de automatizar y optimizar flujos de trabajo pesados en documentos, adaptándose a las necesidades de cada organización, garantizando eficiencia, precisión y supervisión constante.",
-    "valuation": null,
+    "valuation": 1000000,
     "founders": [
       {
         "name": "Maia Brenner",
@@ -1112,7 +1112,7 @@
       "Plataforma de autogestión de eventos"
     ],
     "description": "Plataforma tecnológica para la gestión de eventos que centraliza invitaciones, acreditación, control de acceso y datos de participantes, optimizando la organización y mejorando la experiencia del usuario.",
-    "valuation": null,
+    "valuation": 4500000,
     "founders": [
       {
         "name": "Álvaro Pérez",
@@ -1174,7 +1174,7 @@
       "Soporte, licencias y capacitación"
     ],
     "description": "Holding tecnológico especializado en inteligencia artificial, CRM y diseño digital que integra soluciones de automatización conversacional, customer experience y desarrollo de productos digitales. Trabaja con empresas mediante servicios de consultoría, implementación y soporte en plataformas como Salesforce y Zendesk, combinando tecnología, diseño y experiencia personalizada.",
-    "valuation": null,
+    "valuation": 10000000,
     "founders": [
       {
         "name": "Andrés Ugarte",
@@ -1248,7 +1248,7 @@
       "Estrategia de transformación digital"
     ],
     "description": "Consultora tecnológica uruguaya especializada en Salesforce, automatización y customer experience que combina tecnología estratégica con diseño de productos digitales para escalar empresas en Latinoamérica y EE.UU. Trabaja con implementación, consultoría, soporte y automatización empresarial, integrando IA, CRM y operaciones digitales para compañías medianas y grandes. Actualmente forma parte del holding tecnológico Haussa.",
-    "valuation": null,
+    "valuation": 2000000,
     "founders": [
       {
         "name": "Gabriel Rilo",
@@ -1279,7 +1279,7 @@
       "Licenciamiento Zendesk"
     ],
     "description": "Consultora tecnológica uruguaya especializada en Customer Experience y soluciones Zendesk para empresas de Latinoamérica. Ayuda a organizaciones a optimizar atención al cliente, ventas y procesos digitales mediante automatización, integraciones y consultoría tecnológica. Nació como spin-off de Hikko y actualmente forma parte del holding tecnológico Haussa, con operaciones en múltiples mercados de América Latina.",
-    "valuation": null,
+    "valuation": 200000,
     "founders": [
       {
         "name": "Marcel Dibot",
@@ -1459,7 +1459,7 @@
     "logoUrl": "/logos/hisofi_logo.jpg"
   },
     {
-    "name": "trolabs",
+    "name": "Tryolabs",
     "sector": "AI",
     "founded": 2009,
     "website": "https://tryolabs.com/",
@@ -1535,5 +1535,145 @@
       }
     ],
     "logoUrl": "/logos/atomlabs_ai_logo.jpg"
+  },
+  {
+    "name": "Nowports",
+    "sector": "Logistics Tech",
+    "countries": ["MX", "UY"],
+    "founded": 2018,
+    "website": "https://nowports.com/",
+    "services": [
+      "Gestión digital de transporte internacional",
+      "Seguimiento de embarques y contenedores",
+      "Financiamiento para comercio exterior",
+      "Seguros de carga",
+      "Automatización documental y aduanera",
+      "Analítica para cadenas de suministro"
+    ],
+    "description": "Plataforma logística digital que centraliza el transporte internacional de carga, el seguimiento de embarques, la documentación, los seguros y el financiamiento para empresas de América Latina. Fue fundada por el mexicano Alfonso de los Ríos y el uruguayo Maximiliano Casal, y alcanzó una valoración de US$ 1.100 millones tras su ronda Serie C de 2022.",
+    "valuation": 1100000000,
+    "founders": [
+      {
+        "name": "Alfonso de los Ríos",
+        "role": "Co-Founder & CEO"
+      },
+      {
+        "name": "Maximiliano Casal",
+        "role": "Co-Founder & COO"
+      }
+    ],
+    "logoUrl": "/logos/nowports.png"
+  },
+  {
+    "name": "AstroPay",
+    "sector": "Fintech",
+    "countries": ["UY"],
+    "founded": 2009,
+    "website": "https://www.astropay.com/",
+    "services": [
+      "Billetera digital multicurrency",
+      "Pagos internacionales",
+      "Tarjetas virtuales y físicas",
+      "Transferencias entre usuarios",
+      "Conversión y gestión de monedas",
+      "Pagos digitales transfronterizos"
+    ],
+    "description": "Fintech fundada en Uruguay que desarrolla una billetera digital para pagar, enviar, recibir y administrar dinero entre países. AstroPay opera internacionalmente y fue la compañía de pagos de la que posteriormente surgió dLocal. Su valoración privada actual no ha sido divulgada públicamente.",
+    "valuation": 100000000,
+    "founders": [
+      {
+        "name": "Sergio Fogel",
+        "role": "Co-Founder"
+      },
+      {
+        "name": "Andrés Bzurovski",
+        "role": "Co-Founder"
+      }
+    ],
+    "logoUrl": "/logos/astropay.png"
+  },
+  {
+    "name": "Solfium",
+    "sector": "ClimateTech",
+    "countries": ["UY", "MX", "CA"],
+    "founded": 2020,
+    "website": "https://solfium.com/",
+    "services": [
+      "Adopción de energía solar para empresas",
+      "Diseño e instalación de sistemas fotovoltaicos",
+      "Financiamiento de proyectos solares",
+      "Monitoreo de generación y ahorro energético",
+      "Descarbonización de cadenas de suministro",
+      "Gestión digital de proyectos energéticos"
+    ],
+    "description": "Plataforma de tecnología energética que facilita a empresas y pymes la adopción de energía solar mediante una solución integral de instalación, financiamiento y monitoreo. Fue creada por fundadores de Uruguay, México y Canadá y concentra su operación comercial en el mercado mexicano.",
+    "valuation": 10000000,
+    "founders": [
+      {
+        "name": "Andrés Friedman",
+        "role": "Co-Founder & CEO"
+      },
+      {
+        "name": "Juan Osuna",
+        "role": "Co-Founder & CCO"
+      },
+      {
+        "name": "Zacharie Magnan",
+        "role": "Co-Founder & CFO"
+      }
+    ],
+    "logoUrl": "/logos/solfium.svg"
+  },
+  {
+    "name": "Foliume",
+    "sector": "InsurTech",
+    "countries": ["UY"],
+    "founded": 2022,
+    "website": "https://www.foliume.com/",
+    "services": [
+      "Automatización de operaciones de seguros",
+      "Asistentes de IA para corredores y agencias",
+      "Procesamiento de pólizas y renovaciones",
+      "Generación y comparación de cotizaciones",
+      "Gestión de reclamos",
+      "Integración con flujos de banca-seguros"
+    ],
+    "description": "Insurtech uruguaya que utiliza inteligencia artificial para automatizar tareas repetitivas de corredores, agencias y distribuidores de seguros. Su plataforma agiliza cotizaciones, pólizas, renovaciones y reclamos, con equipos y operaciones entre Montevideo y Madrid.",
+    "valuation": 1000000,
+    "founders": [
+      {
+        "name": "Martín Fagioli",
+        "role": "Co-Founder & CEO"
+      },
+      {
+        "name": "Guillermo Vergara",
+        "role": "Co-Founder & COO"
+      }
+    ],
+    "logoUrl": "/logos/foliume.svg"
+  },
+  {
+    "name": "Chipsafer",
+    "sector": "AgTech",
+    "countries": ["UY"],
+    "founded": 2012,
+    "website": "https://www.chipsafer.com/",
+    "services": [
+      "Monitoreo remoto de ganado",
+      "Rastreo satelital y geolocalización",
+      "Detección de anomalías de comportamiento",
+      "Alertas de salud y seguridad animal",
+      "Analítica para producción ganadera",
+      "Tecnología IoT para establecimientos rurales"
+    ],
+    "description": "Agtech uruguaya que combina dispositivos IoT, conectividad satelital y analítica para rastrear ganado y detectar anomalías de salud, comportamiento o ubicación. Su tecnología ayuda a mejorar la trazabilidad, la seguridad animal y la eficiencia de la producción ganadera.",
+    "valuation": 70000,
+    "founders": [
+      {
+        "name": "Victoria Alonsopérez",
+        "role": "Founder & CEO"
+      }
+    ],
+    "logoUrl": "/logos/chipsafer.jpg"
   }
 ]

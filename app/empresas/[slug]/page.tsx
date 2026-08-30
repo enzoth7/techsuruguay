@@ -5,11 +5,23 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPublishedCompanies } from "@/src/lib/published-companies";
 import { siteConfig } from "@/src/lib/site";
-import { slugifyCompanyName, sortCompanies } from "@/src/lib/techsuruguay";
+import { formatFounderCountries, slugifyCompanyName, sortCompanies } from "@/src/lib/techsuruguay";
 
 type CompanyPageProps = {
   params: Promise<{ slug: string }>;
 };
+
+function CountryFlags({ countries }: { countries: string[] }) {
+  const label = formatFounderCountries(countries);
+
+  return (
+    <span className="founder-flags" role="img" aria-label={`País de origen de los fundadores: ${label}`} title={label}>
+      {countries.map((country) => (
+        <span key={country} className={`fi fi-${country.toLocaleLowerCase("en")}`} aria-hidden="true" />
+      ))}
+    </span>
+  );
+}
 
 export const revalidate = 3600;
 
@@ -100,6 +112,7 @@ export default async function CompanyPage({ params }: CompanyPageProps) {
         <dl className="company-profile-facts">
           <div><dt>Tipo de empresa</dt><dd>{company.sector || "Sin clasificar"}</dd></div>
           <div><dt>Año de fundación</dt><dd>{company.founded ?? "Sin datos"}</dd></div>
+          <div><dt>País de los fundadores</dt><dd><CountryFlags countries={company.countries} /></dd></div>
           <div><dt>Valoración estimada</dt><dd>{company.valuation ? `U$S ${company.valuation.toLocaleString("es-UY")}` : "Sin datos"}</dd></div>
         </dl>
 

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Sans, Newsreader } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { siteConfig } from "@/src/lib/site";
+import "flag-icons/css/flag-icons.min.css";
 import "./globals.css";
 
 const plexSans = IBM_Plex_Sans({
@@ -39,6 +40,16 @@ export const metadata: Metadata = {
     "directorio startups Uruguay",
     "empresas de tecnología Uruguay",
     "empresas de software Uruguay",
+    "incubadoras Uruguay",
+    "incubadoras de startups Uruguay",
+    "aceleradoras Uruguay",
+    "aceleradoras de startups Uruguay",
+    "centros de apoyo para emprendedores Uruguay",
+    "apoyo para startups Uruguay",
+    "financiamiento para startups Uruguay",
+    "agencias de innovación Uruguay",
+    "ecosistema emprendedor Uruguay",
+    "emprendimientos Uruguay",
   ],
   alternates: {
     canonical: "/",

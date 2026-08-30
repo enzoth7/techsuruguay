@@ -1,19 +1,26 @@
 import { getPublishedCompanies } from "@/src/lib/published-companies";
 import { siteConfig } from "@/src/lib/site";
 import { slugifyCompanyName, sortCompanies } from "@/src/lib/techsuruguay";
+import {
+  SUPPORT_ECOSYSTEM_DESCRIPTION,
+  SUPPORT_ECOSYSTEM_ID,
+  SUPPORT_ECOSYSTEM_TITLE,
+  SUPPORT_ORGANIZATIONS,
+} from "@/src/lib/support-organizations";
 
 export const revalidate = 3600;
 
 export async function GET() {
   const companies = sortCompanies(await getPublishedCompanies());
+  const supportSectionUrl = new URL(`/#${SUPPORT_ECOSYSTEM_ID}`, siteConfig.url).toString();
   const lines = [
     "# Techs Uruguay",
     "",
-    "> Directorio editorial de startups, empresas tecnológicas y compañías de software con actividad en Uruguay.",
+    "> Directorio editorial de startups, empresas tecnológicas, incubadoras, aceleradoras y centros de apoyo con actividad en Uruguay.",
     "",
     "## Propósito",
     "",
-    "Techs Uruguay ayuda a descubrir el ecosistema tecnológico uruguayo mediante fichas con sector, fundación, valoración estimada cuando está disponible, servicios y equipo.",
+    "Techs Uruguay ayuda a descubrir el ecosistema tecnológico y emprendedor uruguayo mediante fichas de empresas y una selección de incubadoras, aceleradoras, agencias, universidades y organizaciones de apoyo.",
     "",
     "## Directorio de empresas",
     "",
@@ -26,6 +33,16 @@ export async function GET() {
 
       return `- [${company.name}](${profileUrl}): ${facts}. ${company.description || "Ficha editorial disponible en Techs Uruguay."}`;
     }),
+    "",
+    `## ${SUPPORT_ECOSYSTEM_TITLE}`,
+    "",
+    SUPPORT_ECOSYSTEM_DESCRIPTION,
+    "",
+    ...SUPPORT_ORGANIZATIONS.map(
+      (organization) => `- [${organization.name}](${organization.website}): organización del ecosistema de apoyo a startups, innovación y emprendimiento en Uruguay.`,
+    ),
+    "",
+    `Sección en Techs Uruguay: ${supportSectionUrl}`,
     "",
     `Fuente principal: ${siteConfig.url.toString()}`,
   ];

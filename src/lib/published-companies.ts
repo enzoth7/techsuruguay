@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { getOnlineCompanies } from "@/src/lib/online-companies";
-import { cloneCompanies, TECHSURUGUAY_COMPANIES } from "@/src/lib/techsuruguay";
+import { cloneCompanies, mergeCompanies, TECHSURUGUAY_COMPANIES } from "@/src/lib/techsuruguay";
 
 export async function getPublishedCompanies() {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -19,7 +19,9 @@ export async function getPublishedCompanies() {
     });
     const companies = await getOnlineCompanies(client);
 
-    return companies?.length ? companies : cloneCompanies(TECHSURUGUAY_COMPANIES);
+    return companies?.length
+      ? mergeCompanies(TECHSURUGUAY_COMPANIES, companies)
+      : cloneCompanies(TECHSURUGUAY_COMPANIES);
   } catch {
     return cloneCompanies(TECHSURUGUAY_COMPANIES);
   }

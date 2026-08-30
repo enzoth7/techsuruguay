@@ -1,18 +1,26 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
 
-import { useEffect, useMemo, useState, type CSSProperties, type MouseEvent } from "react";
+import { useEffect, useId, useMemo, useRef, useState, type CSSProperties, type MouseEvent } from "react";
 import {
   cloneCompanies,
+  formatFounderCountries,
   formatFounded,
   formatInitials,
   formatMoney,
+  mergeCompanies,
   sortCompanies,
   TECHSURUGUAY_COMPANIES,
   type TechUruguayCompany,
 } from "@/src/lib/techsuruguay";
 import { getOnlineCompanies } from "@/src/lib/online-companies";
 import { createSupabaseBrowserClient, isSupabaseConfigured } from "@/src/lib/supabase/client";
+import {
+  SUPPORT_ECOSYSTEM_DESCRIPTION,
+  SUPPORT_ECOSYSTEM_ID,
+  SUPPORT_ECOSYSTEM_TITLE,
+  SUPPORT_ORGANIZATIONS,
+} from "@/src/lib/support-organizations";
 
 type RankedCompany = TechUruguayCompany & { position: number };
 type RankingSort = "position" | "founded";
@@ -69,10 +77,77 @@ function getPodiumStyle(position: number): CSSProperties {
 
 function CompanyLogo({ company }: { company: TechUruguayCompany }) {
   if (company.logoUrl) {
-    return <img src={company.logoUrl} loading="lazy" decoding="async" alt={`Logo de ${company.name}`} className="h-full w-full object-cover" />;
+    return <img src={company.logoUrl} loading="lazy" decoding="async" alt={`Logo de ${company.name}`} className="h-full w-full object-contain" />;
   }
 
   return <div aria-hidden="true">{formatInitials(company.name)}</div>;
+}
+
+function FounderFlags({ countries, compact = false }: { countries: string[]; compact?: boolean }) {
+  const label = formatFounderCountries(countries);
+
+  return (
+    <span
+      className={`founder-flags${compact ? " is-compact" : ""}`}
+      role="img"
+      aria-label={`País de origen de los fundadores: ${label}`}
+      title={label}
+    >
+      {countries.map((country) => (
+        <span key={country} className={`fi fi-${country.toLocaleLowerCase("en")}`} aria-hidden="true" />
+      ))}
+    </span>
+  );
+}
+
+function ValuationInfo({ mobile = false }: { mobile?: boolean }) {
+  const [open, setOpen] = useState(false);
+  const tooltipId = useId();
+  const rootRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const closeFromOutside = (event: PointerEvent) => {
+      if (!rootRef.current?.contains(event.target as Node)) setOpen(false);
+    };
+    const closeFromKeyboard = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        rootRef.current?.querySelector<HTMLButtonElement>("button")?.blur();
+      }
+    };
+
+    document.addEventListener("pointerdown", closeFromOutside);
+    document.addEventListener("keydown", closeFromKeyboard);
+
+    return () => {
+      document.removeEventListener("pointerdown", closeFromOutside);
+      document.removeEventListener("keydown", closeFromKeyboard);
+    };
+  }, [open]);
+
+  return (
+    <span ref={rootRef} className={`valuation-info${mobile ? " is-mobile" : ""}`} data-open={open || undefined}>
+      {mobile ? <span className="valuation-info-label">Valoración estimada</span> : null}
+      <button
+        type="button"
+        className="valuation-info-trigger"
+        aria-label="Qué incluye la valoración estimada"
+        aria-expanded={open}
+        aria-controls={tooltipId}
+        onClick={(event) => setOpen((current) => {
+          if (current) event.currentTarget.blur();
+          return !current;
+        })}
+      >
+        <span aria-hidden="true">?</span>
+      </button>
+      <span id={tooltipId} role="tooltip" className="valuation-info-tooltip">
+        Valoración estimada: incluye rondas de inversión, facturación anual divulgada, etc.
+      </span>
+    </span>
+  );
 }
 
 function PodiumCompany({ company, onSelect }: { company: RankedCompany; onSelect: () => void }) {
@@ -102,11 +177,15 @@ function RankingRow({ company, expanded, onToggle }: { company: RankedCompany; e
           <div className="ranking-logo"><CompanyLogo company={company} /></div>
           <div className="min-w-0 text-left">
             <div className="ranking-name">{company.name}</div>
-            <div className="ranking-mobile-valuation">{formatMoney(company.valuation)}</div>
+            <div className="ranking-mobile-meta">
+              <span className="ranking-mobile-valuation">{formatMoney(company.valuation)}</span>
+              <FounderFlags countries={company.countries} compact />
+            </div>
           </div>
         </div>
         <div className="ranking-cell ranking-type">{company.sector || "Sin clasificar"}</div>
         <div className="ranking-cell ranking-founded">{formatFounded(company.founded)}</div>
+        <div className="ranking-cell ranking-country"><FounderFlags countries={company.countries} /></div>
         <div className="ranking-cell ranking-money">{formatMoney(company.valuation)}</div>
         <div className="ranking-chevron" aria-hidden="true">{expanded ? "−" : "+"}</div>
       </button>
@@ -121,6 +200,10 @@ function RankingRow({ company, expanded, onToggle }: { company: RankedCompany; e
             <div style={{ padding: 0, border: 0, borderRadius: 0, background: "transparent" }}>
               <dt>Año de fundación</dt>
               <dd>{formatFounded(company.founded)}</dd>
+            </div>
+            <div style={{ padding: 0, border: 0, borderRadius: 0, background: "transparent" }}>
+              <dt>País de los fundadores</dt>
+              <dd><FounderFlags countries={company.countries} /></dd>
             </div>
           </dl>
           <div className="grid gap-7 md:grid-cols-[minmax(0,1.45fr)_minmax(220px,0.85fr)]">
@@ -165,7 +248,7 @@ function SectorFilter({
   selectedSector: string;
   onSelect: (sector: string) => void;
 }) {
-  const currentLabel = selectedSector === "all" ? "Tipo: todos" : selectedSector;
+  const currentLabel = selectedSector === "all" ? "Tipo" : selectedSector;
 
   const chooseSector = (event: MouseEvent<HTMLButtonElement>, sector: string) => {
     onSelect(sector);
@@ -205,6 +288,62 @@ function SectorFilter({
   );
 }
 
+function SupportEcosystem() {
+  return (
+    <section id={SUPPORT_ECOSYSTEM_ID} className="supporters-section" aria-labelledby="supporters-title">
+      <div className="supporters-header">
+        <h2 id="supporters-title">{SUPPORT_ECOSYSTEM_TITLE}</h2>
+        <p className="supporters-intro">{SUPPORT_ECOSYSTEM_DESCRIPTION}</p>
+      </div>
+
+      <div className="supporters-marquee" aria-label="Organizaciones que apoyan a emprendimientos en Uruguay">
+        <div className="supporters-marquee-track">
+          <div className="supporters-marquee-group">
+            {SUPPORT_ORGANIZATIONS.map((organization) => (
+              <a
+                key={organization.name}
+                href={organization.website}
+                target="_blank"
+                rel="noreferrer"
+                className={`supporter-logo-link${"darkLogo" in organization ? " is-dark" : ""}`}
+                aria-label={`Visitar el sitio de ${organization.name}`}
+              >
+                <img
+                  src={organization.logo}
+                  alt={`Logo de ${organization.name}`}
+                  loading="lazy"
+                  decoding="async"
+                  className={"cropLogo" in organization ? "is-cropped" : undefined}
+                />
+              </a>
+            ))}
+          </div>
+          <div className="supporters-marquee-group" aria-hidden="true">
+            {SUPPORT_ORGANIZATIONS.map((organization) => (
+              <a
+                key={`duplicate-${organization.name}`}
+                href={organization.website}
+                target="_blank"
+                rel="noreferrer"
+                tabIndex={-1}
+                className={`supporter-logo-link${"darkLogo" in organization ? " is-dark" : ""}`}
+              >
+                <img
+                  src={organization.logo}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  className={"cropLogo" in organization ? "is-cropped" : undefined}
+                />
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function TechUruguayLanding({ initialCompanies = TECHSURUGUAY_COMPANIES }: { initialCompanies?: TechUruguayCompany[] }) {
   const [companies, setCompanies] = useState<TechUruguayCompany[]>(() => cloneCompanies(initialCompanies));
   const [openName, setOpenName] = useState<string | null>(null);
@@ -216,7 +355,9 @@ export default function TechUruguayLanding({ initialCompanies = TECHSURUGUAY_COM
   useEffect(() => {
     if (!isSupabaseConfigured()) return;
     getOnlineCompanies(createSupabaseBrowserClient())
-      .then((onlineCompanies) => { if (onlineCompanies?.length) setCompanies(onlineCompanies); })
+      .then((onlineCompanies) => {
+        if (onlineCompanies?.length) setCompanies(mergeCompanies(TECHSURUGUAY_COMPANIES, onlineCompanies));
+      })
       .catch(() => { /* Keep the bundled ranking if the public database is unavailable. */ });
   }, []);
 
@@ -288,7 +429,7 @@ export default function TechUruguayLanding({ initialCompanies = TECHSURUGUAY_COM
       <main className="landing-main mobile-safe-area mx-auto max-w-7xl pb-16 pt-4 sm:px-6 sm:pb-20 sm:pt-6 lg:px-8">
         <header className="landing-hero">
           <h1>Startups y empresas de tecnología en Uruguay.</h1>
-          <p className="landing-intro">Un directorio editorial para explorar las empresas tech uruguayas; startups, fintech y compañías de software que lideran la innovación en el país.</p>
+          <p className="landing-intro">Un directorio editorial para explorar empresas tech, startups, fintech y compañías de software de Uruguay, junto con incubadoras, aceleradoras y centros que apoyan la innovación y el emprendimiento.</p>
         </header>
 
         {podium.length === 3 ? (
@@ -316,36 +457,6 @@ export default function TechUruguayLanding({ initialCompanies = TECHSURUGUAY_COM
                 }}
               />
             </div>
-            <div className="ranking-mobile-controls" aria-label="Filtros y orden del ranking">
-              <button
-                className={`ranking-filter-control${rankingSort === "position" ? " is-active" : ""}`}
-                type="button"
-                aria-pressed={rankingSort === "position"}
-                aria-label={`Ordenar por posición. Orden actual: ${positionDirection === "asc" ? "ascendente" : "descendente"}.`}
-                data-direction={positionDirection}
-                onClick={() => updateRankingSort("position")}
-              >
-                Pos.
-              </button>
-              <SectorFilter
-                sectors={sectors}
-                selectedSector={selectedSector}
-                onSelect={(sector) => {
-                  setSelectedSector(sector);
-                  setOpenName(null);
-                }}
-              />
-              <button
-                className={`ranking-filter-control${rankingSort === "founded" ? " is-active" : ""}`}
-                type="button"
-                aria-pressed={rankingSort === "founded"}
-                aria-label={`Ordenar por fundación. Orden actual: ${foundedDirection === "asc" ? "ascendente" : "descendente"}.`}
-                data-direction={foundedDirection}
-                onClick={() => updateRankingSort("founded")}
-              >
-                Fundación
-              </button>
-            </div>
           </div>
 
           <div className="ranking-header">
@@ -360,6 +471,9 @@ export default function TechUruguayLanding({ initialCompanies = TECHSURUGUAY_COM
               Pos.
             </button>
             <div>Empresa</div>
+            <div className="ranking-mobile-valuation-heading">
+              <ValuationInfo mobile />
+            </div>
             <div className="ranking-type ranking-type-filter">
               <SectorFilter
                 sectors={sectors}
@@ -380,8 +494,12 @@ export default function TechUruguayLanding({ initialCompanies = TECHSURUGUAY_COM
             >
               Fundación
             </button>
-            <div className="ranking-money">Valoración estimada</div>
-            <div />
+            <div className="ranking-country">País</div>
+            <div className="ranking-money ranking-valuation-heading">
+              <span>Valoración estimada</span>
+              <ValuationInfo />
+            </div>
+            <div className="ranking-chevron-heading" />
           </div>
           <ol className="ranking-list">
             {visibleRanked.length > 0 ? visibleRanked.map((company) => (
@@ -391,6 +509,8 @@ export default function TechUruguayLanding({ initialCompanies = TECHSURUGUAY_COM
             )}
           </ol>
         </section>
+
+        <SupportEcosystem />
 
         <footer
           style={{
