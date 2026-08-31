@@ -537,7 +537,7 @@ body {
     white-space: normal;
   }
 
-  .valuation-info:focus-within .valuation-info-tooltip,
+  .valuation-info-trigger:focus-visible + .valuation-info-tooltip,
   .valuation-info[data-open="true"] .valuation-info-tooltip {
     opacity: 1;
     transform: translateY(0);
@@ -1161,6 +1161,68 @@ body {
   }
 
   @media (max-width: 47.999rem) {
+    .ranking-search-input {
+      font-size: 1rem;
+    }
+
+    .ranking-header {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+    }
+
+    .valuation-info-label {
+      font-size: 0.72rem;
+    }
+
+    .valuation-info-trigger > span {
+      width: 1.35rem;
+      height: 1.35rem;
+      font-size: 0.8rem;
+    }
+
+    .valuation-info-tooltip {
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+
+    .ranking-row {
+      min-height: 5.25rem;
+    }
+
+    .ranking-position {
+      font-size: 1.1rem;
+    }
+
+    .ranking-name {
+      font-size: 1.075rem;
+    }
+
+    .ranking-mobile-valuation {
+      font-size: 0.875rem;
+      line-height: 1.35;
+    }
+
+    .ranking-mobile-facts dt,
+    .ranking-detail-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+    }
+
+    .ranking-mobile-facts dd {
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+
+    .ranking-details .text-sm {
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+
+    .ranking-empty,
+    .supporters-intro {
+      font-size: 1rem;
+    }
+
     .podium-grid {
       gap: clamp(0.45rem, 2vw, 0.7rem);
     }

@@ -1,7 +1,7 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
 
-import { useEffect, useId, useMemo, useRef, useState, type CSSProperties, type MouseEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent } from "react";
 import {
   cloneCompanies,
   formatFounderCountries,
@@ -102,7 +102,7 @@ function FounderFlags({ countries, compact = false }: { countries: string[]; com
 
 function ValuationInfo({ mobile = false }: { mobile?: boolean }) {
   const [open, setOpen] = useState(false);
-  const tooltipId = useId();
+  const tooltipId = mobile ? "valuation-info-mobile" : "valuation-info-desktop";
   const rootRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
@@ -136,10 +136,10 @@ function ValuationInfo({ mobile = false }: { mobile?: boolean }) {
         aria-label="Qué incluye la valoración estimada"
         aria-expanded={open}
         aria-controls={tooltipId}
-        onClick={(event) => setOpen((current) => {
-          if (current) event.currentTarget.blur();
-          return !current;
-        })}
+        onClick={(event) => {
+          if (open) event.currentTarget.blur();
+          setOpen(!open);
+        }}
       >
         <span aria-hidden="true">?</span>
       </button>
