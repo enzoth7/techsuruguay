@@ -287,11 +287,13 @@ body {
     transition: transform 220ms cubic-bezier(0.22, 0.8, 0.36, 1), box-shadow 220ms ease;
   }
 
-  .podium-entry:hover,
-  .podium-entry:focus-within {
-    z-index: 1;
-    transform: translateY(-10px) scale(1.012);
-    box-shadow: 0 34px 70px rgb(15 23 42 / 0.28);
+  @media (hover: hover) and (pointer: fine) {
+    .podium-entry:hover,
+    .podium-entry:focus-within {
+      z-index: 1;
+      transform: translateY(-10px) scale(1.012);
+      box-shadow: 0 34px 70px rgb(15 23 42 / 0.28);
+    }
   }
 
   .podium-action {
@@ -1159,6 +1161,57 @@ body {
   }
 
   @media (max-width: 47.999rem) {
+    .podium-grid {
+      gap: clamp(0.45rem, 2vw, 0.7rem);
+    }
+
+    .podium-entry {
+      align-self: end;
+      padding: 1.1rem 0.8rem 1rem;
+    }
+
+    .podium-entry:hover,
+    .podium-entry:focus-within {
+      transform: none;
+    }
+
+    .podium-action {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .podium-rank {
+      top: 0.85rem;
+      right: 0.55rem;
+      font-size: 2rem;
+      letter-spacing: -0.04em;
+    }
+
+    .podium-logo {
+      width: clamp(3.65rem, 17vw, 4.25rem);
+      height: clamp(3.65rem, 17vw, 4.25rem);
+    }
+
+    .podium-copy {
+      width: 100%;
+      margin-top: 0.75rem;
+      padding-right: 0;
+    }
+
+    .podium-copy h3 {
+      font-size: 1rem;
+      letter-spacing: -0.025em;
+    }
+
+    .podium-copy > p:last-child {
+      margin-top: 0.3rem;
+      font-size: 0.85rem;
+      line-height: 1.25;
+      overflow-wrap: anywhere;
+      white-space: normal;
+    }
+
     .supporters-section {
       width: calc(100vw - 2rem);
       max-width: calc(100vw - 2rem);
