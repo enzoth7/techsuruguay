@@ -523,13 +523,13 @@ export default function TechUruguayLanding({ initialCompanies = TECHSURUGUAY_COM
           <a
             href="https://www.enzothome.com"
             target="_blank"
-            rel="noreferrer"
+            rel="author noopener"
             className="inline-flex min-h-11 items-center text-sm font-semibold text-slate-950 underline decoration-slate-500 underline-offset-4 transition hover:text-red-800"
             style={{ gap: "0.75rem" }}
           >
             <img
               src="/LogoET.png"
-              alt=""
+              alt="Enzo Thome"
               width={32}
               height={32}
               style={{ width: "2rem", height: "2rem", flex: "none", borderRadius: "0.35rem", objectFit: "cover" }}

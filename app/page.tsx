@@ -21,12 +21,22 @@ export default async function Home() {
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "Person",
+        "@id": "https://www.enzothome.com/#person",
+        name: "Enzo Thome",
+        url: "https://www.enzothome.com",
+        jobTitle: "Creador y Desarrollador",
+      },
+      {
         "@type": "Organization",
         "@id": homeUrl + "#organization",
         name: siteConfig.name,
         url: homeUrl,
         logo: new URL("/Logo.png", siteConfig.url).toString(),
         description: siteConfig.description,
+        founder: {
+          "@id": "https://www.enzothome.com/#person",
+        },
         areaServed: {
           "@type": "Country",
           name: siteConfig.countryName,
@@ -39,6 +49,9 @@ export default async function Home() {
         name: siteConfig.name,
         description: siteConfig.description,
         inLanguage: siteConfig.language,
+        creator: {
+          "@id": "https://www.enzothome.com/#person",
+        },
         areaServed: {
           "@type": "Country",
           name: siteConfig.countryName,
@@ -56,6 +69,12 @@ export default async function Home() {
         },
         publisher: {
           "@id": homeUrl + "#organization",
+        },
+        author: {
+          "@id": "https://www.enzothome.com/#person",
+        },
+        creator: {
+          "@id": "https://www.enzothome.com/#person",
         },
         about: {
           "@type": "Thing",
